@@ -1,2 +1,2 @@
 # urna-simples
-arthurbttf.github.io/urna-simples
+~ https://arthurbttf.github.io/urna-simples/
