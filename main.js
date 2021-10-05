@@ -1,15 +1,21 @@
-var confirmasfx = new Audio('sons/urna.mp3')//,botaosfx = new Audio('sons/.mp3');
+var confirmasfx = new Audio('sons/urna.mp3');//,botaosfx = new Audio('sons/.mp3');
+var teclafx = new Audio('sons/tecla.mp3');//Som ao teclar.
 var numero = ' ', count = 0, troca_img, csv, hiddenElement;
 var numUmBool = numDoisBool = numTresBool = numQuatroBool = numCincoBool = numSeisBool = false;
 var data = new Array(5);
-data[0] = data[1] = data[2] = data[3] = data[4] = data[5] = new Array(2);
+data[0] = data[1] = data[2] = data[3] = data[4] = data[5] = new Array(3);
 
-console.log(data)
 function confirma()
 {
+	//console.log(numero);
+	//confirmasfx.play();
 	//window.location = 'final.html';
-	console.log(numero)
-	confirmasfx.play();
+	var element = document.getElementById('1');
+	html2pdf(element);
+
+	let currentDate = new Date();
+	let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+	console.log(time);
 }
 
 function nothing(){}
@@ -57,6 +63,7 @@ function fotoP(num)
 
 function corrige()
 {
+	teclafx.play();
 	if(numero == 01)
 	{
 		troca_img = document.getElementById("um");
@@ -115,6 +122,7 @@ function botao(clicked_id)
 	}
 	//imprime os números pressionados na tela
 	document.getElementById("tela_numero").innerHTML = numero;
+	teclafx.play();
 }
 
 //fazer download dos resultados
