@@ -10,8 +10,6 @@ function confirma()
 	//console.log(numero);
 	//confirmasfx.play();
 	//window.location = 'final.html';
-	var element = document.getElementById('1');
-	html2pdf(element);
 
 	let currentDate = new Date();
 	let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
