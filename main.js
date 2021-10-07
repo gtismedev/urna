@@ -1,10 +1,11 @@
 var confirmasfx = new Audio('sons/urna.mp3');//,botaosfx = new Audio('sons/.mp3');
 var teclafx = new Audio('sons/tecla.mp3');//Som ao teclar.
-var numero = ' ', count = 0, troca_img, csv, hiddenElement;
-var numUmBool = numDoisBool = numTresBool = numQuatroBool = numCincoBool = numSeisBool = false;
-var data = new Array(5);
+var numero = '', count = 0, troca_img, csv, hiddenElement;
+var hora, minuto, segundo;
+let data = new Array(10);
 data[0] = data[1] = data[2] = data[3] = data[4] = data[5] = new Array(3);
-
+var nulo = false
+//data[0][5] = "10:20:21"
 function confirma()
 {
 	//console.log(numero);
@@ -12,93 +13,21 @@ function confirma()
 	//window.location = 'final.html';
 
 	let currentDate = new Date();
-	let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+	hora = botar_zeros(currentDate.getHours());
+	minuto = botar_zeros(currentDate.getMinutes());
+	segundo = botar_zeros(currentDate.getSeconds());
+	let time = hora + ":" + minuto + ":" + segundo;
 	console.log(time);
 }
 
-function nothing(){}
-
-function fotoP(num)
-{
-	if(num == 01)
-	{
-		troca_img = document.getElementById("um");
-		troca_img.style.display = "block";
-		numUmBool = true;
-	}
-	else if(num == 02)
-	{
-		troca_img = document.getElementById("dois");
-		troca_img.style.display = "block";
-		numDoisBool = true;
-	}
-	else if(num == 03)
-	{
-		troca_img = document.getElementById("tres");
-		troca_img.style.display = "block";
-		numTresBool = true;
-	}
-	else if(num == 04)
-	{
-		troca_img = document.getElementById("quatro");
-		troca_img.style.display = "block";
-		numQuatroBool = true;
-	}
-	else if(num == 05)
-	{
-		troca_img = document.getElementById("cinco");
-		troca_img.style.display = "block";
-		numCincoBool = true;
-	}
-	else if(num == 06)
-	{
-		troca_img = document.getElementById("seis");
-		troca_img.style.display = "block";
-		numSeisBool = true;
-	}
-	//document.getElementById("tela_numero").innerHTML = '';
-}
-
+//botão corrige, para apagar os numeros digitados
 function corrige()
 {
 	teclafx.play();
-	if(numero == 01)
-	{
-		troca_img = document.getElementById("um");
-		troca_img.style.display = "none";
-		numUmBool = false;
-	}
-	else if(numero == 02)
-	{
-		troca_img = document.getElementById("dois");
-		troca_img.style.display = "none";
-		numDoisBool = false;
-	}
-	else if(numero == 03)
-	{
-		troca_img = document.getElementById("tres");
-		troca_img.style.display = "none";
-		numTresBool = false;
-	}
-	else if(numero == 04)
-	{
-		troca_img = document.getElementById("quatro");
-		troca_img.style.display = "none";
-		numQuatroBool = false;
-	}
-	else if(numero == 05)
-	{
-		troca_img = document.getElementById("cinco");
-		troca_img.style.display = "none";
-		numCincoBool = false;
-	}
-	else if(numero == 06)
-	{
-		troca_img = document.getElementById("seis");
-		troca_img.style.display = "none";
-		numSeisBool = false;
-	}
-	numero = ' ';
+	//se mandar a variavel sem nada, aparece a imagem do voto nulo, por isso esse if
+	if(numero != '')
+		showHide(numero);
+	numero = '';
 	count = 0;
 	document.getElementById("tela_numero").innerHTML = '';
 }
@@ -110,23 +39,24 @@ function botao(clicked_id)
 	if(count <= 1){
 		//adiciona o id do botao a variável
 		numero = numero + clicked_id + '';
-		console.log(numero)
+		//console.log(numero)
 		count++;
 	}
 	if(count == 2){
 		//incrementa o contador pra ele não ter perigo de voltar
-		count+=2;
-		fotoP(numero);
+		count++;
+		//chama a função pra mostrar a foto do candidato
+		showHide(numero);
 	}
 	//imprime os números pressionados na tela
 	document.getElementById("tela_numero").innerHTML = numero;
 	teclafx.play();
 }
 
-//fazer download dos resultados
+//fazer download dos resultados pra excel
 function download_csv()
 {
-    csv = 'Chapa,Votos\n';
+    csv = 'Chapa,Votos,Hora\n';
     data.forEach(function(row) {
 	    csv += row.join(',');
 	    csv += "\n";
@@ -138,4 +68,26 @@ function download_csv()
     hiddenElement.target = '_blank';
     hiddenElement.download = 'resultado.csv';
     hiddenElement.click();
+}
+
+//colocar zeros no tempo, se não, ficaria, por ex: 22:2:5
+function botar_zeros(x)
+{
+	if(x < 10)
+		x = "0" + x;
+	return x;
+}
+
+//função pra mostrar a foto do candidato baseado no numero
+function showHide(my_id)
+{
+	//olha se foi digitado algum numero que nao é uma chapa, se sim, altera o id para nulo
+	if(my_id != '01' && my_id != '02' && my_id != '03' && my_id != '04' && my_id != '05' && my_id != '06')
+	    my_id = 'nulo'
+
+	troca_img = document.getElementById(my_id);
+	if(troca_img.style.display == "block")
+		troca_img.style.display = "none";
+	else
+		troca_img.style.display = "block";
 }
