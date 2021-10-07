@@ -11,13 +11,9 @@ function confirma()
 	//console.log(numero);
 	//confirmasfx.play();
 	//window.location = 'final.html';
-	let currentDate = new Date();
-	hora = botar_zeros(currentDate.getHours());
-	minuto = botar_zeros(currentDate.getMinutes());
-	segundo = botar_zeros(currentDate.getSeconds());
-	let time = hora + ":" + minuto + ":" + segundo;
-	console.log(time);
-	data[contadorVotos] = [numero,'1',time]
+
+	console.log(tempo());
+	data[contadorVotos] = [numero,'1',tempo()]
 	contadorVotos++;
 	somaColuna = data.length;
 	console.log(data)
@@ -28,7 +24,7 @@ function corrige()
 {
 	teclafx.play();
 	//se mandar a variavel sem nada, aparece a imagem do voto nulo, por isso esse if
-	if(numero != '')
+	if(numero != '' && count == 2)
 		showHide(numero);
 	numero = '';
 	count = 0;
@@ -60,7 +56,7 @@ function download_csv()
 {
 	somaColuna++;
 	data[contadorVotos+1] = ['',"=soma(B2:B"+somaColuna+")",'']
-    csv = 'Chapa,Votos,Hora\n';
+    csv = 'sep=,\nChapa,Votos,Hora\n';
     data.forEach(function(row) {
 	    csv += row.join(',');
 	    csv += "\n";
@@ -71,6 +67,16 @@ function download_csv()
     hiddenElement.target = '_blank';
     hiddenElement.download = 'resultado.csv';
     hiddenElement.click();
+}
+
+function tempo()
+{
+	let currentDate = new Date();
+	hora = botar_zeros(currentDate.getHours());
+	minuto = botar_zeros(currentDate.getMinutes());
+	segundo = botar_zeros(currentDate.getSeconds());
+	let time = hora + ":" + minuto + ":" + segundo;
+	return time;
 }
 
 //colocar zeros no tempo, se não, ficaria, por ex: 22:2:5
