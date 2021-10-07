@@ -1,23 +1,26 @@
 var confirmasfx = new Audio('sons/urna.mp3');//,botaosfx = new Audio('sons/.mp3');
 var teclafx = new Audio('sons/tecla.mp3');//Som ao teclar.
-var numero = '', count = 0, troca_img, csv, hiddenElement;
+var numero = '', count = 0, troca_img, csv, hiddenElement,contadorVotos = 0, somaColuna='';
 var hora, minuto, segundo;
-let data = new Array(10);
-data[0] = data[1] = data[2] = data[3] = data[4] = data[5] = new Array(3);
-var nulo = false
-//data[0][5] = "10:20:21"
+let data = [];
+//data[0][0] = '01'
+console.log(data)
+
 function confirma()
 {
 	//console.log(numero);
 	//confirmasfx.play();
 	//window.location = 'final.html';
-
 	let currentDate = new Date();
 	hora = botar_zeros(currentDate.getHours());
 	minuto = botar_zeros(currentDate.getMinutes());
 	segundo = botar_zeros(currentDate.getSeconds());
 	let time = hora + ":" + minuto + ":" + segundo;
 	console.log(time);
+	data[contadorVotos] = [numero,'1',time]
+	contadorVotos++;
+	somaColuna = data.length;
+	console.log(data)
 }
 
 //botão corrige, para apagar os numeros digitados
@@ -37,7 +40,6 @@ function botao(clicked_id)
 {
 	//olha se o contador é menor do que 1, ou seja, foi digitado um numero ou menos
 	if(count <= 1){
-		//adiciona o id do botao a variável
 		numero = numero + clicked_id + '';
 		//console.log(numero)
 		count++;
@@ -56,12 +58,13 @@ function botao(clicked_id)
 //fazer download dos resultados pra excel
 function download_csv()
 {
+	somaColuna++;
+	data[contadorVotos+1] = ['',"=soma(B2:B"+somaColuna+")",'']
     csv = 'Chapa,Votos,Hora\n';
     data.forEach(function(row) {
 	    csv += row.join(',');
 	    csv += "\n";
     });
-
     console.log(csv);
     hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
