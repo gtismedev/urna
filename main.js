@@ -54,8 +54,6 @@ function botao(clicked_id)
 	teclafx.play();
 }
 
-
-
 //fazer download dos resultados pra excel
 function download_csv()
 {
