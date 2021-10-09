@@ -11,6 +11,7 @@ function confirma()
 {
 	//console.log(numero);
 
+
 	console.log(tempo());
 	if(numero != '01' && numero != '02' && numero != '03' && numero != '04' && numero != '05' && numero != '06')
 		votosNulo++;
@@ -20,8 +21,16 @@ function confirma()
 	/*setTimeout(function(){
 				window.location.href = 'final.html';
 			}, 1000);*/
-}
+			//convertePDF();
 
+}
+function convertePDF() {
+	let doc = new jsPDF('p','pt','a4');
+
+	doc.addHTML(document.body,function() {
+		doc.save('html.pdf');
+	});
+}
 //botão corrige, para apagar os numeros digitados
 function corrige()
 {
