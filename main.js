@@ -1,36 +1,50 @@
-var confirmasfx = new Audio('sons/urna.mp3');//,botaosfx = new Audio('sons/.mp3');
+var confirmasfx = new Audio('sons/urna.mp3');
 var teclafx = new Audio('sons/tecla.mp3');//Som ao teclar.
-var numero = '', count = 0, troca_img, csv, hiddenElement,contadorVotos = 0, somaColuna='';
-var hora, minuto, segundo;
-let data = [];
-var votosC1, votosC2, votosC3, votosC4, votosC5, votosC6, votosNulo = 0;
-//console.log(data)
+var numero = '', count = 0, troca_img;// csv, hiddenElement,contadorVotos = 0, somaColuna='';
+var hora, minuto, segundo;//ver se precisa
+let listaVoto = [];//,data = [];
+var ls_keys;
+preenche_lista();
 
 
+//registra o voto digitado
 function confirma()
 {
-	//console.log(numero);
+	if(numero == '')
+		event.preventDefault();
 
+	else if(numero != '01' && numero != '02' && numero != '03' && numero != '04' && numero != '05' && numero != '06' && numero != 'branco')
+		numero = 'nulo';
 
-	console.log(tempo());
-	if(numero != '01' && numero != '02' && numero != '03' && numero != '04' && numero != '05' && numero != '06')
-		votosNulo++;
-	data[contadorVotos] = [numero,'1',tempo()]
-	contadorVotos++;
-	somaColuna = data.length;
-	/*setTimeout(function(){
-				window.location.href = 'final.html';
-			}, 1000);*/
-			//convertePDF();
+	confirmasfx.play();
+	//serve para adicionar um voto ao número digitado
+	for(i = 0; i < listaVoto.length; i++)
+	{
+		if(listaVoto[i].numero == numero)
+			listaVoto[i].votos = parseInt(listaVoto[i].votos + 1)
+	}
 
+	atualizarLocalStorage()
+
+	if(numero != '' && count == 3)
+		showHide(numero);
+
+	numero = '';
+	count = 0;
+	document.getElementById("tela_numero").innerHTML = '';
+	setTimeout(function(){
+			window.location.href = 'final.html';
+		}, 1800);
 }
-function convertePDF() {
-	let doc = new jsPDF('p','pt','a4');
 
-	doc.addHTML(document.body,function() {
-		doc.save('html.pdf');
-	});
+function branco()
+{
+	numero = 'branco';
+	count = 3;
+	showHide(numero)
+	document.getElementById("tela_numero").innerHTML = numero;
 }
+
 //botão corrige, para apagar os numeros digitados
 function corrige()
 {
@@ -43,27 +57,61 @@ function corrige()
 	document.getElementById("tela_numero").innerHTML = '';
 }
 
-//botões para inserir o numero da chapa
+//serve para registrar os numeros quando um botão numero é pressionado
 function botao(clicked_id)
 {
-	//olha se o contador é menor do que 1, ou seja, foi digitado um numero ou menos
 	if(count <= 1){
 		numero = numero + clicked_id + '';
-		//console.log(numero)
 		count++;
 	}
 	if(count == 2){
-		//incrementa o contador pra ele não ter perigo de voltar
 		count++;
-		//chama a função pra mostrar a foto do candidato
 		showHide(numero);
 	}
-	//imprime os números pressionados na tela
 	document.getElementById("tela_numero").innerHTML = numero;
 	teclafx.play();
 }
 
-//fazer download dos resultados pra excel
+//função pra mostrar a foto do candidato baseado no numero
+function showHide(my_id)
+{
+	//olha se foi digitado algum numero que nao é uma chapa, se sim, altera o id para nulo
+	if(my_id != '01' && my_id != '02' && my_id != '03' && my_id != '04' && my_id != '05' && my_id != '06')
+	    my_id = 'nulo'
+
+	troca_img = document.getElementById(my_id);
+	if(troca_img.style.display == "block")
+		troca_img.style.display = "none";
+	else
+		troca_img.style.display = "block";
+}
+
+function convertePDF() {
+	let doc = new jsPDF('p','pt','a4');
+
+	doc.addHTML(document.body,function() {
+		doc.save('html.pdf');
+	});
+}
+
+//retorna uma lista com todos os itens guardados no localstorage
+function preenche_lista(){
+	ls_keys = Object.keys(localStorage)
+
+	for(i in ls_keys)
+		listaVoto.push(JSON.parse(localStorage.getItem(ls_keys[i])))
+
+	return listaVoto
+}
+
+//atualiza os novos itens no localstorage
+function atualizarLocalStorage() {
+	for(i = 0; i < listaVoto.length; i++){
+		localStorage.setItem(listaVoto[i].nome, JSON.stringify(listaVoto[i]))
+	}
+}
+
+/*faz download dos resultados pra excel
 function download_csv()
 {
 	//ainda falta contar os votos brancos
@@ -85,7 +133,6 @@ function download_csv()
     hiddenElement.download = 'resultado.csv';
     hiddenElement.click();
 }
-
 function tempo()
 {
 	let currentDate = new Date();
@@ -102,18 +149,4 @@ function botar_zeros(x)
 	if(x < 10)
 		x = "0" + x;
 	return x;
-}
-
-//função pra mostrar a foto do candidato baseado no numero
-function showHide(my_id)
-{
-	//olha se foi digitado algum numero que nao é uma chapa, se sim, altera o id para nulo
-	if(my_id != '01' && my_id != '02' && my_id != '03' && my_id != '04' && my_id != '05' && my_id != '06')
-	    my_id = 'nulo'
-
-	troca_img = document.getElementById(my_id);
-	if(troca_img.style.display == "block")
-		troca_img.style.display = "none";
-	else
-		troca_img.style.display = "block";
-}
+}*/

@@ -5,13 +5,15 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<script src='main.js'></script>
 	<link rel="stylesheet" type="text/css" href="style.css"/>
-	<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script-->
-    <script src="html2canvas.js"></script>
-    <script src="jspdf.js"></script>
+	<script src="jquery.min.js"></script>
+	<script src="html2canvas.js"></script>
+	<script src="jspdf.js"></script>
 </head>
 
 <body>
-	<!--img src="img/imgofcurna.png" alt="some text" width=1400 height=700-->
+	<!--input type="text" name="nome" id="nome"><br><br>
+	<input type="text" name="numero" id="numero">
+	<img src="img/imgofcurna.png" alt="some text" width=1400 height=700-->
 	<br>
 	<button id="1" onclick="botao(this.id)">1</button>
 	<button id="2" onclick="botao(this.id)">2</button>
@@ -28,7 +30,7 @@
 	<!--a href="final.html"-->
 	<button onclick="confirma()">CONFIRMA</button>
 <!--/a-->
-	<button onclick="">BRANCO</button>
+	<button onclick="branco()">BRANCO</button>
 	<button onclick="corrige()">CORRIGE</button>
 	<br>
 	<h1 id="tela_numero"></h1>
@@ -39,6 +41,7 @@
 	<div id="05" style="display:none;"><img  src="img/cry.jpg" height="280" width="200"/></div>
 	<div id="06" style="display:none;"><img  src="img/cry.jpg" height="280" width="200"/></div>
 	<div id="nulo" style="display:none;"><img  src="img/brinquedo.jpg" height="280" width="200"/></div>
+	<div id="branco" style="display:none;"><img  src="img/pinta.jpg" height="280" width="200"/></div>
 	<button onclick="download_csv()">Download CSV</button>
 </body>
 
