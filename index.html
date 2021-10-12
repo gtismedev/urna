@@ -11,9 +11,36 @@
 </head>
 
 <body>
+	<div id="tudo" style="display:flex;flex-direction:column;align-items:end;">
+		<div style="display: flex;flex-direction: row;margin-right: 2%;margin-top: -6%;">
+			<!--img src="img/incioimg.png" alt="some text" width=1400 height=700-->
+			<img style="border: 0px solid ; width: 400px; height: 250px;" src="img/parnamirim.png" alt="some text">
+			<img style="width: 100px; height: 100px;margin-top:15%;" src="img/ste.png" alt="some text">
+		</div>
+		<div style="margin-right:8%;margin-top:-5.5%;background-color:#444444;padding-right:20px;padding-bottom:20px;padding-top:40px">
+			<div id="numpad">
+				<button id="3" onclick="botao(this.id)">3</button>
+				<button id="2" onclick="botao(this.id)">2</button>
+				<button id="1" onclick="botao(this.id)">1</button>
+				<button id="6" onclick="botao(this.id)">6</button>
+				<button id="5" onclick="botao(this.id)">5</button>
+				<button id="4" onclick="botao(this.id)">4</button>
+				<button id="9" onclick="botao(this.id)">9</button>
+				<button id="8" onclick="botao(this.id)">8</button>
+				<button id="7" onclick="botao(this.id)">7</button>
+				<button id="0" style="margin-right: 29.8%;" onclick="botao(this.id)">0</button>
+			</div>
+			<div style="text-align:center;margin-left:15px">
+				<button style="height:60px;background:white;" onclick="branco()">BRANCO</button>
+				<button style="height:60px;background:#eb7d04;color:white;" onclick="corrige()">CORRIGE</button>
+				<button style="height:85px;width:100px;background:#309a00;color:white;"onclick="confirma()">CONFIRMA</button>
+			</div>
+		</div>
+	</div>
+
 	<!--input type="text" name="nome" id="nome"><br><br>
 	<input type="text" name="numero" id="numero">
-	<img src="img/imgofcurna.png" alt="some text" width=1400 height=700-->
+	<img src="img/imgofcurna.png" alt="some text" width=1400 height=700>
 	<br>
 	<button id="1" onclick="botao(this.id)">1</button>
 	<button id="2" onclick="botao(this.id)">2</button>
@@ -27,11 +54,6 @@
 	<button id="0" onclick="botao(this.id)">0</button>
 	<br>
 	<br>
-	<!--a href="final.html"-->
-	<button onclick="confirma()">CONFIRMA</button>
-<!--/a-->
-	<button onclick="branco()">BRANCO</button>
-	<button onclick="corrige()">CORRIGE</button>
 	<br>
 	<h1 id="tela_numero"></h1>
 	<div id="01" style="display:none;"><img  src="img/brinquedo.jpg" height="280" width="200"/></div>
@@ -42,7 +64,10 @@
 	<div id="06" style="display:none;"><img  src="img/cry.jpg" height="280" width="200"/></div>
 	<div id="nulo" style="display:none;"><img  src="img/brinquedo.jpg" height="280" width="200"/></div>
 	<div id="branco" style="display:none;"><img  src="img/pinta.jpg" height="280" width="200"/></div>
-	<button onclick="download_csv()">Download CSV</button>
+	<button onclick="download_csv()">Download CSV</button-->
+	<div id="meuFooter">
+		<footer style="background-image:url(img/base.png);height:52px;">‎‎‎‎‏‏‎ ‎</footer>
+	</div>
 </body>
 
 </html>

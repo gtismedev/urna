@@ -5,6 +5,27 @@ button{
 }
 
 body{
-background-image:url("img/imgofcurna.png");
-background-repeat:no-repeat;
+    background: #e7e7e7;
+}
+
+
+#numpad
+{
+    margin-top: -10%;
+    background-color: #444444;
+    width: 250px;
+    display: block;
+    float:right;
+    margin-right: 10%;
+}
+
+#numpad button
+{
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    background: black;
+    color:white;
+    font-size: 30px;
+    float: right;
 }

@@ -18,17 +18,25 @@
 	            window.location.href = 'index.html';
 	        }
 		</script>
-		<div>
-			<button onclick="cadastrarCandidato()">clickme</button>
-			<div id="texto_boas_vindas">
-				<h1>eleição para diretores<br>administrativo - <br>financeiro e diretor<br> pedagógico; trienio<br>2022-2024</h1>
+		<div id="divPai">
+			<div id="divFilho">
+				<div id="prefeitura">
+					<img style="border: 0px solid ; width: 700px; height: 400px;" src="img/parnamirim.png" alt="some text">
+				</div>
+				<div id="texto_boas_vindas">
+					<h1>eleição para diretores<br>administrativo - <br>financeiro e diretor<br> pedagógico; trienio<br>2022 - 2024</h1>
+				</div>
 			</div>
-			<div id="prefeitura">
-				<img style="border: 0px solid ; width: 700px; height: 400px;" src="img/parnamirim.png" alt="some text">
+			<div id="GTI">
+				<img style="width: 250px; height: 250px;" src="img/ste.png" alt="some text">
 			</div>
-			<div style="text-align: center;" id="GTI">
-				<img style="width: 170px; height: 170px;" src="img/ste.png" alt="some text">
+			<div id="voteAqui">
+				<!--p style="margin-right:7%;font-size:20px">Clique aqui para</p-->
+				<button id="botaoInicio" onclick="cadastrarCandidato()">VOTAR</button>
 			</div>
+		</div>
+		<div id="meuFooter">
+			<footer style="background-image:url(img/base.png);height:52px;">‎‎‎‎‏‏‎ ‎</footer>
 		</div>
 	</body>
 </html>
