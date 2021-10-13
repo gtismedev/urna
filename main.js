@@ -3,43 +3,48 @@ var teclafx = new Audio('sons/tecla.mp3');//Som ao teclar.
 var numero = '', count = 0, troca_img;// csv, hiddenElement,contadorVotos = 0, somaColuna='';
 var hora, minuto, segundo;//ver se precisa
 let listaVoto = [];//,data = [];
-var ls_keys;
+var ls_keys, botaoConfirmar,botaoConfirmarOff;
 preenche_lista();
 
 
 //registra o voto digitado
 function confirma()
 {
-	if(numero == '')
-		event.preventDefault();
-
-	else if(numero != '01' && numero != '02' && numero != '03' && numero != '04' && numero != '05' && numero != '06' && numero != 'branco')
-		numero = 'nulo';
-
-	confirmasfx.play();
-	//serve para adicionar um voto ao número digitado
-	for(i = 0; i < listaVoto.length; i++)
+	if(numero != '')
 	{
-		if(listaVoto[i].numero == numero)
-			listaVoto[i].votos = parseInt(listaVoto[i].votos + 1)
-	}
+		if(numero != '01' && numero != '02' && numero != '03' && numero != '04' && numero != '05' && numero != 'BR')
+			numero = 'nulo';
 
-	atualizarLocalStorage()
+		botaoConfirmar = document.getElementById('buttonON')
+		botaoConfirmarOff = document.getElementById('buttonOFF')
+		botaoConfirmar.style.display = "none";
+		botaoConfirmarOff.style.display = "initial";
 
-	if(numero != '' && count == 3)
-		showHide(numero);
+		confirmasfx.play();
+		//serve para adicionar um voto ao número digitado
+		for(i = 0; i < listaVoto.length; i++)
+		{
+			if(listaVoto[i].numero == numero)
+				listaVoto[i].votos = parseInt(listaVoto[i].votos + 1)
+		}
 
-	numero = '';
-	count = 0;
-	document.getElementById("tela_numero").innerHTML = '';
-	setTimeout(function(){
-			window.location.href = 'final.html';
-		}, 1800);
+		atualizarLocalStorage()
+
+		if(numero != '' && count == 3)
+			showHide(numero);
+
+		numero = '';
+		count = 0;
+		document.getElementById("tela_numero").innerHTML = '‎ ';
+		setTimeout(function(){
+				location.replace("final.html");
+			}, 1800);
+		}
 }
 
 function branco()
 {
-	numero = 'branco';
+	numero = 'BR';
 	count = 3;
 	showHide(numero)
 	document.getElementById("tela_numero").innerHTML = numero;
@@ -54,7 +59,7 @@ function corrige()
 		showHide(numero);
 	numero = '';
 	count = 0;
-	document.getElementById("tela_numero").innerHTML = '';
+	document.getElementById("tela_numero").innerHTML = '‎ ';
 }
 
 //serve para registrar os numeros quando um botão numero é pressionado
@@ -68,22 +73,29 @@ function botao(clicked_id)
 		count++;
 		showHide(numero);
 	}
-	document.getElementById("tela_numero").innerHTML = numero;
 	teclafx.play();
+	document.getElementById("tela_numero").innerHTML = numero;
 }
 
 //função pra mostrar a foto do candidato baseado no numero
 function showHide(my_id)
 {
 	//olha se foi digitado algum numero que nao é uma chapa, se sim, altera o id para nulo
-	if(my_id != '01' && my_id != '02' && my_id != '03' && my_id != '04' && my_id != '05' && my_id != '06')
+	if(my_id != '01' && my_id != '02' && my_id != '03' && my_id != '04' && my_id != '05')
 	    my_id = 'nulo'
 
 	troca_img = document.getElementById(my_id);
+	sem_nada = document.getElementById('nada');
 	if(troca_img.style.display == "block")
+	{
 		troca_img.style.display = "none";
+		sem_nada.style.display = "block";
+	}
 	else
+	{
+		sem_nada.style.display = "none";
 		troca_img.style.display = "block";
+	}
 }
 
 function convertePDF() {

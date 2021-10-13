@@ -9,7 +9,7 @@
 		<script>
 	        function cadastrarCandidato() {
 				nome = ['Chapa 1', 'Chapa 2', 'Chapa 3', 'Chapa 4', 'Chapa 5', 'Chapa 6','Branco','Nulo'];
-				numero = ['01', '02', '03', '04', '05', '06','branco','nulo'];
+				numero = ['01', '02', '03', '04', '05', '06','BR','nulo'];
 				for(i = 0; i < nome.length; i++)
 				{
 					localStorage.setItem(nome[i],JSON.stringify({"nome": nome[i], "numero": numero[i], "votos": 0 }))
