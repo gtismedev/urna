@@ -85,7 +85,7 @@ function botao(clicked_id)
 function showHide(my_id)
 {
 	//olha se foi digitado algum numero que nao é uma chapa, se sim, altera o id para nulo
-	if(my_id != '01' && my_id != '02' && my_id != '03' && my_id != '04' && my_id != '05')
+	if(my_id != '01' && my_id != '02' && my_id != '03' && my_id != '04' && my_id != '05' && my_id != 'BR')
 	    my_id = 'nulo';
 
 	troca_img = document.getElementById(my_id);
