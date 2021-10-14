@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src='main.js'></script>
+	<link rel="stylesheet" type="text/css" href="styletabela.css"/>
+	<script src="scripts/jquery.min.js"></script>
+	<script src="scripts/html2canvas.js"></script>
+	<script src="scripts/jspdf.js"></script>
+</head>
+
+<body onload="carregaDados()">
+    <div id="div_tabela">
+        <table border="1" id="tabela" style="border-collapse: collapse;margin: 25px 0;font-size: 0.9em;font-family: sans-serif;min-width: 400px;box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);">
+            <thead>
+                <tr>
+                    <td>Nome Candidato</td>
+                    <td>Número</td>
+                    <td>Votos</td>
+                </tr>
+            </thead>
+            <tbody id="tabela_corpo">
+            </tbody>
+        </table>
+        <div id="imagens" style="display:flex;margin-left:-2%;margin-top:-3%">
+            <img width=350 height=200 style="" src="img/parnamirim.png" alt="some text">
+            <img width=70 height=70 style="margin-top:4%;" src="img/ste.png" alt="some text">
+        </div>
+    </div>
+
+    <button onclick="convertePDF()">Baixar em pdf</button>
+
+    <script>
+        function carregaDados() {
+            console.log("Rodou")
+            elementoPai = document.getElementById("tabela_corpo")
+            lista = preeche_lista()
+
+            for(i=0; i<lista.length; i++){
+                tr = document.createElement("tr")
+                td1 = document.createElement("td")
+                td2 = document.createElement("td")
+                td3 = document.createElement("td")
+
+                td1.textContent = lista[i].nome
+                td2.textContent = lista[i].numero
+                td3.textContent = lista[i].votos
+
+                tr.appendChild(td1)
+                tr.appendChild(td2)
+                tr.appendChild(td3)
+
+                elementoPai.appendChild(tr)
+            }
+
+        }
+
+        function preeche_lista(){
+            var lista = []
+            var ls_keys = Object.keys(localStorage)
+
+            for(posicao in ls_keys){
+                lista.push(JSON.parse(localStorage.getItem(ls_keys[posicao])))
+            }
+
+            return lista
+
+        }
+        function convertePDF() {
+            let doc = new jsPDF('p','pt','a4');
+
+            doc.addHTML(document.body,function() {
+                doc.save('html.pdf');
+            });
+        }
+
+
+    </script>
+</body>
+</html>
