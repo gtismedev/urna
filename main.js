@@ -44,10 +44,14 @@ function confirma()
 
 function branco()
 {
-	numero = 'BR';
-	count = 3;
-	showHide(numero)
-	document.getElementById("tela_numero").innerHTML = numero;
+	if(numero == '')
+	{
+		teclafx.play();
+		numero = 'BR';
+		count = 3;
+		showHide(numero)
+		document.getElementById("tela_numero").innerHTML = numero;
+	}
 }
 
 //botão corrige, para apagar os numeros digitados
@@ -82,9 +86,7 @@ function showHide(my_id)
 {
 	//olha se foi digitado algum numero que nao é uma chapa, se sim, altera o id para nulo
 	if(my_id != '01' && my_id != '02' && my_id != '03' && my_id != '04' && my_id != '05')
-	    my_id = 'nulo'
-		
-	//tem um bug quando coloca uma chapa, clica no branco, corrige e coloca uma chapa de novo
+	    my_id = 'nulo';
 
 	troca_img = document.getElementById(my_id);
 	sem_nada = document.getElementById('nada');

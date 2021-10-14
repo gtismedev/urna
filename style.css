@@ -1,12 +1,82 @@
-
-button{
-  height:85px;
-  width: 85px;
-}
-
 body{
     background: #e7e7e7;
 }
+
+@font-face
+{
+    font-family: Gabriola;
+    src: url(gabriola.ttf);
+}
+
+/*-----------------INICIO.HTML-----------------*/
+
+#botaoInicio{
+  height:75px;
+  width: 350px;
+  cursor:pointer;
+}
+#botaoInicio:hover
+{
+    border-style: solid;
+    border-color: black;
+}
+
+#divPai
+{
+    background-color:#D6E7E7;
+    border-style:solid;
+    margin: 1% 2% 0.5% 2%;
+}
+
+#divFilho
+{
+    display:flex;
+    flex-direction:row;
+}
+
+#GTI
+{
+    text-align: left;
+    margin-top:-13%;
+    margin-left: 15%;
+}
+
+#prefeitura
+{
+    border: 0px solid;
+    width: 700px;
+    height: 400px;
+    margin-top: -6%;
+}
+
+#texto_boas_vindas
+{
+    margin-top: 4%;
+    line-height: 50px;
+    text-align: center;
+    font-family: gabriola;
+    color:white;
+    text-transform: uppercase;
+    font-size: 30px;
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 4px 5px #000;
+}
+
+#botaoInicio
+{
+    font-size: 50px;
+    height: 75px;
+    width:280px;
+    background-color: #9CCE00;
+    color:white;
+}
+
+#voteAqui
+{
+    margin: -4% 12% 5% 0%;
+    text-align:right;
+}
+
+/*-----------------INDEX.HTML-----------------*/
 
 #div_caidodatos_e_teclas
 {
@@ -56,7 +126,12 @@ body{
     margin-top:-5.5%;
     background-color:#444444;
     padding: 40px 20px 20px 0px;
+}
 
+#numpadPai button
+{
+    height:85px;
+    width: 85px;
 }
 
 #numpad
@@ -97,4 +172,44 @@ body{
     background-color: #D6E7E7;
     width:200px;
     height:173px;
+}
+
+/*-----------------FINAL.HTML-----------------*/
+
+#elementos
+{
+    background-color:#D6E7E7;
+    margin: 1%;
+    padding: 22.1%;
+    border-style:solid;
+    border-color:#000;
+    display:flex;
+    flex-direction: column;
+}
+
+#elementos h1
+{
+    font-family: gabriola;
+    color:white;
+    text-transform: uppercase;
+    font-size: 70px;
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 4px 5px #000;
+    text-align: center;
+    margin-top:-280px;
+}
+
+#ok
+{
+    width: 492px;
+    height: 416px;
+    position: absolute; /*Can also be `fixed`*/
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    /*Solves a problem in which the content is being cut when the div is smaller than its' wrapper:*/
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
 }
