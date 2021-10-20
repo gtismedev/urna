@@ -126,6 +126,7 @@ body{
 {
     height:85px;
     width: 85px;
+    cursor: pointer;
 }
 
 #numpad
@@ -140,6 +141,7 @@ body{
 
 #numpad button
 {
+    cursor: pointer;
     width: 60px;
     height: 60px;
     margin: 5px;
@@ -171,8 +173,8 @@ body{
 #finalizar
 {
     font-size: 15px;
-    text-align: center;
-    cursor:pointer;
+    text-align: right;
+    margin-right: 12%;
 }
 
 /*-----------------FINAL.HTML-----------------*/

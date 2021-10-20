@@ -8,7 +8,6 @@ var listaVotoNome, listaVotoNumero, listaVotoVotos;
 preenche_lista();
 
 function carregaDados() {
-	console.log("Rodou")
 	elementoPai = document.getElementById("tabela_corpo")
 
 	for(i = 0; i < listaVoto.length; i++){
@@ -127,22 +126,28 @@ function showHide(my_id)
 
 function end()
 {
-	var verificante = prompt('Insira a senha para continuar')
+	var verificante = prompt('Insira a senha para continuar');
 	if(verificante == p)
 	{
 		location.replace("resultados.html");
 	}
 	else
 	{
-		alert('Senha incorreta. Tente novamente.')
+		alert('Senha incorreta. Tente novamente.');
 	}
 }
 
 function convertePDF()
 {
 	let pdf = new jsPDF('p', 'pt', 'letter');
+	/*
+	PREFEITURA MUNICIPAL DE PARNAMIRIM/RN
+	SECRETARIA MUNICIPAL DE EDUCAÇÃO E CULTURA
+	PROINFO/GTI*/
 
-	pdf.text(160, 50, 'RESULTADOS DA ELEIÇÃO');
+	pdf.text(125, 50, 'PREFEITURA MUNICIPAL DE PARNAMIRIM/RN');
+	pdf.text(95, 70, 'SECRETARIA MUNICIPAL DE EDUCAÇÃO E CULTURA');
+	pdf.text(265, 90, 'STE/GTI');
 	pdf.text(90, 500, 'ASSINATURA DO MESÁRIO');
 	pdf.text(100, 530, '_____________________');
     source = $('#div_tabela')[0];
@@ -155,9 +160,9 @@ function convertePDF()
         }
     };
     margins = {
-        top: 80,
+        top: 170,
         bottom: 60,
-        left: 40,
+        left: 75,
         width: 522
     };
     pdf.fromHTML
@@ -171,8 +176,8 @@ function convertePDF()
 
 		function (dispose) {
 
-		    pdf.save('resultados.pdf');
-			//window.open(pdf.output('bloburl')); // to debug
+		    //pdf.save('resultados.pdf');
+			window.open(pdf.output('bloburl')); // to debug
 		}, margins
 	);
 	alert('Sua votação foi baixada!')
