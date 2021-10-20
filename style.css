@@ -9,11 +9,20 @@ body{
 }
 
 /*-----------------INICIO.HTML-----------------*/
+#voteAqui
+{
+    margin: -4% 12% 5% 0%;
+    text-align:right;
+}
 
-#botaoInicio{
+#botaoInicio
+{
   height:75px;
   width: 350px;
   cursor:pointer;
+  font-size: 30px;
+  background-color: #9CCE00;
+  color:white;
 }
 #botaoInicio:hover
 {
@@ -59,21 +68,6 @@ body{
     text-transform: uppercase;
     font-size: 30px;
     text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 4px 5px #000;
-}
-
-#botaoInicio
-{
-    font-size: 50px;
-    height: 75px;
-    width:280px;
-    background-color: #9CCE00;
-    color:white;
-}
-
-#voteAqui
-{
-    margin: -4% 12% 5% 0%;
-    text-align:right;
 }
 
 /*-----------------INDEX.HTML-----------------*/
@@ -172,6 +166,13 @@ body{
     background-color: #D6E7E7;
     width:200px;
     height:173px;
+}
+
+#finalizar
+{
+    font-size: 15px;
+    text-align: center;
+    cursor:pointer;
 }
 
 /*-----------------FINAL.HTML-----------------*/

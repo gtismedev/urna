@@ -1,12 +1,35 @@
 var confirmasfx = new Audio('sons/urna.mp3');
 var teclafx = new Audio('sons/tecla.mp3');//Som ao teclar.
-var numero = '', count = 0, troca_img;// csv, hiddenElement,contadorVotos = 0, somaColuna='';
-var hora, minuto, segundo;//ver se precisa
+var numero = '', count = 0, troca_img,cont = 0;// csv, hiddenElement,contadorVotos = 0, somaColuna='';
 let listaVoto = [];//,data = [];
+const p = 'edu@2021';
 var ls_keys, botaoConfirmar,botaoConfirmarOff;
+var listaVotoNome, listaVotoNumero, listaVotoVotos;
 preenche_lista();
 
+function carregaDados() {
+	console.log("Rodou")
+	elementoPai = document.getElementById("tabela_corpo")
 
+	for(i = 0; i < listaVoto.length; i++){
+		tr = document.createElement("tr")
+		td1 = document.createElement("td")
+		td2 = document.createElement("td")
+		td3 = document.createElement("td")
+
+
+		td1.textContent = listaVoto[i].nome
+		td2.textContent = listaVoto[i].numero
+		td3.textContent = listaVoto[i].votos
+
+		tr.appendChild(td1)
+		tr.appendChild(td2)
+		tr.appendChild(td3)
+
+		elementoPai.appendChild(tr)
+	}
+
+}
 //registra o voto digitado
 function confirma()
 {
@@ -102,12 +125,57 @@ function showHide(my_id)
 	}
 }
 
-function convertePDF() {
-	let doc = new jsPDF('p','pt','a4');
+function end()
+{
+	var verificante = prompt('Insira a senha para continuar')
+	if(verificante == p)
+	{
+		location.replace("resultados.html");
+	}
+	else
+	{
+		alert('Senha incorreta. Tente novamente.')
+	}
+}
 
-	doc.addHTML(document.body,function() {
-		doc.save('html.pdf');
-	});
+function convertePDF()
+{
+	let pdf = new jsPDF('p', 'pt', 'letter');
+
+	pdf.text(160, 50, 'RESULTADOS DA ELEIÇÃO');
+	pdf.text(90, 500, 'ASSINATURA DO MESÁRIO');
+	pdf.text(100, 530, '_____________________');
+    source = $('#div_tabela')[0];
+    specialElementHandlers = {
+        // element with id of "bypass" - jQuery style selector
+        '#bypassme': function (element, renderer)
+		{
+            // true = "handled elsewhere, bypass text extraction"
+            return true
+        }
+    };
+    margins = {
+        top: 80,
+        bottom: 60,
+        left: 40,
+        width: 522
+    };
+    pdf.fromHTML
+	(
+		source, // HTML string or DOM elem ref.
+		margins.left, // x coord
+		margins.top, { // y coord
+		    'width': margins.width, // max width of content on PDF
+		    'elementHandlers': specialElementHandlers
+		},
+
+		function (dispose) {
+
+		    pdf.save('resultados.pdf');
+			//window.open(pdf.output('bloburl')); // to debug
+		}, margins
+	);
+	alert('Sua votação foi baixada!')
 }
 
 //retorna uma lista com todos os itens guardados no localstorage
@@ -117,7 +185,37 @@ function preenche_lista(){
 	for(i in ls_keys)
 		listaVoto.push(JSON.parse(localStorage.getItem(ls_keys[i])))
 
-	return listaVoto
+	//sort listaVoto
+	var i = 5;
+	while(cont <= 3)
+	{
+		listaVotoNome = listaVoto[cont].nome
+		listaVotoNumero = listaVoto[cont].numero
+		listaVotoVotos = listaVoto[cont].votos
+		listaVoto[cont].nome = listaVoto[i].nome
+		listaVoto[cont].numero = listaVoto[i].numero
+		listaVoto[cont].votos = listaVoto[i].votos
+		listaVoto[i].nome = listaVotoNome
+		listaVoto[i].numero = listaVotoNumero
+		listaVoto[i].votos = listaVotoVotos
+		if(cont != 2)
+		{
+			cont++;
+			i--;
+		}
+		else if(cont == 2)
+		{
+			cont++;
+			i+=2;
+		}
+
+	/*cont=0,i=5;
+	cont=1,i=4;
+	cont=2,i=3;
+	cont=3,i=5*/
+	}
+
+	return listaVoto;
 }
 
 //atualiza os novos itens no localstorage
@@ -126,43 +224,3 @@ function atualizarLocalStorage() {
 		localStorage.setItem(listaVoto[i].nome, JSON.stringify(listaVoto[i]))
 	}
 }
-
-/*faz download dos resultados pra excel
-function download_csv()
-{
-	//ainda falta contar os votos brancos
-	votosC1 = '=SOMASE(A12:A300;"01";B12:B300)';
-	votosC2 = '=SOMASE(A12:A300;"02";B12:B300)';
-	votosC3 = '=SOMASE(A12:A300;"03";B12:B300)';
-	votosC4 = '=SOMASE(A12:A300;"04";B12:B300)';
-	votosC5 = '=SOMASE(A12:A300;"05";B12:B300)';
-	votosC6 = '=SOMASE(A12:A300;"06";B12:B300)';
-	csv = 'sep=,\nChapa,Quantidade de Votos\n01,'+votosC1+'\n02,'+votosC2+'\n03,'+votosC3+'\n04,'+votosC4+'\n05,'+votosC5+'\n06,'+votosC6+'\nNulos,'+votosNulo+'\nBrancos,\n\nChapa,Votos,Hora\n';
-    data.forEach(function(row) {
-	    csv += row.join(',');
-	    csv += "\n";
-    });
-    console.log(csv);
-    hiddenElement = document.createElement('a');
-    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-    hiddenElement.target = '_blank';
-    hiddenElement.download = 'resultado.csv';
-    hiddenElement.click();
-}
-function tempo()
-{
-	let currentDate = new Date();
-	hora = botar_zeros(currentDate.getHours());
-	minuto = botar_zeros(currentDate.getMinutes());
-	segundo = botar_zeros(currentDate.getSeconds());
-	let time = hora + ":" + minuto + ":" + segundo;
-	return time;
-}
-
-//colocar zeros no tempo, se não, ficaria, por ex: 22:2:5
-function botar_zeros(x)
-{
-	if(x < 10)
-		x = "0" + x;
-	return x;
-}*/

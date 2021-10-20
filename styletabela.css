@@ -1,16 +1,18 @@
 #tabela {
     border-collapse: collapse;
-    margin: 25px 0;
+    margin: 5% 0 25px 25%;
     font-size: 0.9em;
     font-family: sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+    width:50%;
 }
 
 
 #tabela thead tr {
-    background-color: #105469;
-    color: #ffffff;
+    background-color: #c7c7c7;
+    color: #000;
     text-align: center;
 }
 
