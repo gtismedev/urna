@@ -1,8 +1,13 @@
 var confirmasfx = new Audio('sons/urna.mp3');
 var teclafx = new Audio('sons/tecla.mp3');//Som ao teclar.
 var numero = '', count = 0, troca_img,cont = 0;// csv, hiddenElement,contadorVotos = 0, somaColuna='';
-let listaVoto = [];//,data = [];
+let listaVoto = [];
+var hora, minuto, segundo;
 const p = 'edu@2021';
+const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+];
+var mes;
 var ls_keys, botaoConfirmar,botaoConfirmarOff;
 var listaVotoNome, listaVotoNumero, listaVotoVotos;
 preenche_lista();
@@ -144,13 +149,21 @@ function convertePDF()
 	PREFEITURA MUNICIPAL DE PARNAMIRIM/RN
 	SECRETARIA MUNICIPAL DE EDUCAÇÃO E CULTURA
 	PROINFO/GTI*/
+	//var data = tempo();
 
-	pdf.text(125, 50, 'PREFEITURA MUNICIPAL DE PARNAMIRIM/RN');
-	pdf.text(95, 70, 'SECRETARIA MUNICIPAL DE EDUCAÇÃO E CULTURA');
-	pdf.text(265, 90, 'STE/GTI');
-	pdf.text(90, 500, 'ASSINATURA DO MESÁRIO');
-	pdf.text(100, 530, '_____________________');
+	pdf.text(130, 50, 'PREFEITURA MUNICIPAL DE PARNAMIRIM/RN');
+	pdf.text(101.5, 70, 'SECRETARIA MUNICIPAL DE EDUCAÇÃO E CULTURA');
+	//pdf.text(95, 90,'codege');
+	//pdf.text(430, 90, '.');
+	pdf.text(175, 110, 'Setor de Tecnologia Educational/GTI');
+	pdf.text(90, 170, 'Resultado da Eleição Para Diretor Administrativo-Financeiro');
+	pdf.text(95,190, 'e Pedagógico das unidades de ensino.(triênio 2022-2024)');
+	pdf.text(165.5, 420, 'Parnamirim/RN, '+tempo());
+	pdf.text(204, 470, '_______________________');
+	pdf.text(202.5, 500, 'ASSINATURA DO MESÁRIO');
+
     source = $('#div_tabela')[0];
+
     specialElementHandlers = {
         // element with id of "bypass" - jQuery style selector
         '#bypassme': function (element, renderer)
@@ -160,9 +173,9 @@ function convertePDF()
         }
     };
     margins = {
-        top: 170,
+        top: 200,
         bottom: 60,
-        left: 75,
+        left: 78,
         width: 522
     };
     pdf.fromHTML
@@ -229,3 +242,27 @@ function atualizarLocalStorage() {
 		localStorage.setItem(listaVoto[i].nome, JSON.stringify(listaVoto[i]))
 	}
 }
+
+function tempo()
+{
+	let currentDate = new Date();
+	var mes = monthNames[currentDate.getMonth()]
+	var dia = currentDate.getDate();
+	var ano = currentDate.getFullYear();
+
+	/*hora = botar_zeros(currentDate.getHours());
+	minuto = botar_zeros(currentDate.getMinutes());
+	segundo = botar_zeros(currentDate.getSeconds());*/
+	//let time = hora + ":" + minuto;
+	let time = dia + " de " + mes + " de " + ano;
+	return time;
+}
+
+/*colocar zeros no tempo, se não, ficaria, por ex: 22:2:5
+function botar_zeros(x)
+{
+	if(x < 10)
+		x = "0" + x;
+	return x;
+}
+*/
