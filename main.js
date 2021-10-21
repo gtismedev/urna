@@ -151,16 +151,16 @@ function convertePDF()
 	PROINFO/GTI*/
 	//var data = tempo();
 
-	pdf.text(130, 50, 'PREFEITURA MUNICIPAL DE PARNAMIRIM/RN');
-	pdf.text(101.5, 70, 'SECRETARIA MUNICIPAL DE EDUCAÇÃO E CULTURA');
-	//pdf.text(95, 90,'codege');
-	//pdf.text(430, 90, '.');
-	pdf.text(175, 110, 'Setor de Tecnologia Educational/GTI');
-	pdf.text(90, 170, 'Resultado da Eleição Para Diretor Administrativo-Financeiro');
-	pdf.text(95,190, 'e Pedagógico das unidades de ensino.(triênio 2022-2024)');
-	pdf.text(165.5, 420, 'Parnamirim/RN, '+tempo());
-	pdf.text(204, 470, '_______________________');
-	pdf.text(202.5, 500, 'ASSINATURA DO MESÁRIO');
+	pdf.text(130, 70, 'PREFEITURA MUNICIPAL DE PARNAMIRIM/RN');
+	pdf.text(101.5, 90, 'SECRETARIA MUNICIPAL DE EDUCAÇÃO E CULTURA');
+	pdf.text(50, 110,'COORDENADORIA DE DESENVOLVIMENTO DA GESTÃO ESCOLAR');
+	//pdf.text(563, 90, '.');
+	pdf.text(135, 130, 'SETOR DE TECNOLOGIA EDUCACIONAL/GTI');
+    pdf.text(90, 220, 'Resultado da Eleição para Diretor Administrativo-Financeiro');
+	pdf.text(100,240, 'e Pedagógico das unidades de ensino(triênio 2022-2024).');
+	pdf.text(253.5, 430, 'Parnamirim/RN, '+tempo());
+	pdf.text(184, 620, '________________________________');
+	pdf.text(202.5, 650, 'ASSINATURA DO MESÁRIO/MAT');
 
     source = $('#div_tabela')[0];
 
@@ -173,8 +173,8 @@ function convertePDF()
         }
     };
     margins = {
-        top: 200,
-        bottom: 60,
+        top: 250,
+        bottom: 30,
         left: 78,
         width: 522
     };
@@ -186,6 +186,7 @@ function convertePDF()
 		    'width': margins.width, // max width of content on PDF
 		    'elementHandlers': specialElementHandlers
 		},
+
 
 		function (dispose) {
 
