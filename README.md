@@ -15,5 +15,5 @@ https://parnamirim.rn.gov.br/newsItem.jsp?p=12716
  - localStorage para armazenamento de votos
  
 
-
+# Acesso ao Github Pages
 ~ https://arthurbttf.github.io/urna-simples/
