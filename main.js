@@ -131,15 +131,15 @@ function showHide(my_id)
 
 function end()
 {
-	var verificante = prompt('Insira a senha para continuar');
-	if(verificante == p)
-	{
+	//var verificante = prompt('Insira a senha para continuar');
+	//if(verificante == p)
+	//{
 		location.replace("resultados.html");
-	}
-	else
-	{
-		alert('Senha incorreta. Tente novamente.');
-	}
+	//}
+	// else
+	// {
+	// 	alert('Senha incorreta. Tente novamente.');
+	// }
 }
 
 function convertePDF()

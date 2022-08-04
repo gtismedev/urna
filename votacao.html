@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src='main.js'></script>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<script src="scripts/jquery.min.js"></script>
+	<script src="scripts/html2canvas.js"></script>
+	<script src="scripts/jspdf.js"></script>
+</head>
+
+<body>
+	<div id="div_caidodatos_e_teclas">
+		<div id ="candidatos">
+			<div style="margin-left: -40%;margin-right: 40%;margin-top: 20%;">
+				<h1 id="static_number_indicator">Número:</h1>
+				<h1 id="tela_numero">‎ </h1>
+			</div>
+			<div id="nada" style="display: block; margin-top: 30%;"><img src="img/fundo-padrao.png"></div>
+			<div class="chapas" id="01"><img src="img/Chapa1.png"></div>
+			<div class="chapas" id="02"><img src="img/Chapa2.png"></div>
+			<div class="chapas" id="03"><img src="img/Chapa3.png"></div>
+			<div class="chapas" id="04"><img src="img/Chapa4.png"></div>
+			<div class="chapas" id="05"><img src="img/Chapa5.png"></div>
+			<div class="chapas" id="nulo"><img src="img/nulo.jpeg"></div>
+			<div class="chapas" id="BR"><img src="img/branco.jpeg"></div>
+		</div>
+
+		<div id="teclas">
+			<div style="display: flex;flex-direction: row;margin-top: -6%;">
+				<img width=430 height=250 src="img/parnamirim.png" alt="some text">
+				<img width=80 height=80 style="margin-top:17%;" src="img/ste.png" alt="some text">
+			</div>
+
+			<div id="numpadPai">
+				<div id="numpad">
+					<button id="3" onclick="botao(this.id)">3</button>
+					<button id="2" onclick="botao(this.id)">2</button>
+					<button id="1" onclick="botao(this.id)">1</button>
+					<button id="6" onclick="botao(this.id)">6</button>
+					<button id="5" onclick="botao(this.id)">5</button>
+					<button id="4" onclick="botao(this.id)">4</button>
+					<button id="9" onclick="botao(this.id)">9</button>
+					<button id="8" onclick="botao(this.id)">8</button>
+					<button id="7" onclick="botao(this.id)">7</button>
+					<button id="0" style="margin-right: 29.8%;" onclick="botao(this.id)">0</button>
+				</div>
+				<div style="text-align:center;margin-left:15px">
+					<button style="height:60px;background:white;" onclick="branco()">BRANCO</button>
+					<button style="height:60px;background:#eb7d04;color:white;" onclick="corrige()">CORRIGE</button>
+					<button id="buttonON" style="background:#309a00;display:initial;" onclick="confirma()">CONFIRMA</button>
+					<button id="buttonOFF" style="background:darkgray;display:none" onclick="">CONFIRMA</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<h1 id="finalizar"><a onclick="end()"><u>Finalizar votação</u></a></h1>
+	<!--div id="meuFooter">
+		<footer style="background-image:url(img/base.png);height:52px;">‎‎‎‎‏‏‎ ‎</footer>
+	</div-->
+</body>
+
+</html>
