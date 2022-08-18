@@ -1,24 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<script src="main.js"></script>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script src='scripts/main.js'></script>
+		<link rel="stylesheet" type="text/css" href="styles/style.css"/>
+		<script src="scripts/jquery.min.js"></script>
+		<script src="scripts/html2canvas.js"></script>
+		<script src="scripts/jspdf.js"></script>
 	</head>
 	<body>
-		<script>
-	        function cadastrarCandidato() {
-				nome = ['Nulo', 'Branco','Chapa 3','Chapa 4', 'Chapa 5','Chapa 2','Chapa 1'];
-				numero = ['nulo', 'BR', '03', '04','05', '02', '01'];
-				for(i = 0; i < nome.length; i++)
-				{
-					localStorage.setItem(nome[i],JSON.stringify({"nome": nome[i], "numero": numero[i], "votos": 0 }))
-				}
-	            //alert("Cadidato Cadastrado!")
-	            //window.location.href = 'index.html';
-				location.replace("votacao.html");
-	        }
-		</script>
 		<div id="divPai">
 			<div id="divFilho">
 				<div id="prefeitura">
@@ -32,13 +22,20 @@
 				<img style="width: 150px; height: 150px; margin-left:10%;margin-bottom:5%;" src="img/ste.png" alt="some text">
 			</div>
 			<div id="voteAqui">
-				<!--p style="margin-right:7%;font-size:20px">Clique aqui para</p-->
-				<button id="botaoInicio" onclick="cadastrarCandidato()">INICIAR VOTAÇÃO</button>
+				<ul>
+					<!--p style="margin-right:7%;font-size:20px">Clique aqui para</p-->
+					<li>
+						<button id="botaoInicio" onclick="zeresima(false)">INICIAR URNA</button>
+					</li>
+					<li>
+						<button id="botaoInicio" onclick="iniciar()">CONTINUAR URNA</button>
+					</li>
+				</ul>
 			</div>
 		</div>
 		<button id="botaoInicioInicio" style="display:none" onclick="convertePDF()">Resutado em PDF</button>
-		<!--div id="meuFooter">
-			<footer style="background-image:url(img/base.png);height:52px;">‎‎‎‎‏‏‎ ‎</footer>
-		</div-->
+		<div id="meuFooter">
+			Setor de Tecnologia Educacional/GTI.
+		</div>
 	</body>
 </html>

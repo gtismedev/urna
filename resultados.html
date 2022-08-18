@@ -3,15 +3,27 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<script src='main.js'></script>
-	<link rel="stylesheet" type="text/css" href="styletabela.css"/>
-	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<script src='scripts/main.js'></script>
+	<link rel="stylesheet" type="text/css" href="styles/styletabela.css"/>
+	<link rel="stylesheet" type="text/css" href="styles/style.css"/>
 	<script src="scripts/jquery.min.js"></script>
 	<script src="scripts/html2canvas.js"></script>
 	<script src="scripts/jspdf.js"></script>
 </head>
 
 <body onload="carregaDados()" style="background-color:#d5e7e7;">
+	<script>
+	    var para = new URLSearchParams(window.location.search);
+	    var pass = para.get('iniciado');
+		setTimeout(function(){
+				if(pass)
+				{
+					var sumir = document.getElementById('botaoComecar');
+					sumir.style.display = 'none';
+					document.getElementById('botaoInicio').textContent = 'RESULTADO';
+				}
+			}, 1);
+	</script>
     <div id="div_tabela">
         <table border="1" id="tabela">
             <thead>
@@ -29,6 +41,10 @@
             <img width=70 height=70 style="margin-top:4%;" src="img/ste.png" alt="some text">
         </div-->
     </div>
-    <button id="botaoInicio" style="font-size:30px;margin-left:37%" onclick="convertePDF()">Resultado em PDF</button>
+    <button id="botaoInicio" style="font-size:30px;margin-left:37%;display:initial" onclick="zeresima(true)">BAIXAR ZERÉSIMA</button>
+	<button id="botaoComecar" style="font-size:30px;margin-left:37%;display:initial;margin-top:1%" onclick="cadastrarCandidato()">INICIAR VOTAÇÃO</button>
+	<div id="meuFooter">
+		Setor de Tecnologia Educacional/GTI.
+	</div>
 </body>
 </html>
