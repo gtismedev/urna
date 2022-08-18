@@ -1,5 +1,5 @@
 # Urna de Votação
-Este projeto teve como intuito facilitar a votação para gestores das escolas municipais de Parnamirim/RN em 2022.
+Este projeto teve como intuito facilitar a votação para gestores das escolas municipais de Parnamirim/RN em 2021.
 https://parnamirim.rn.gov.br/newsItem.jsp?p=12716
 
 # Objetivos:
