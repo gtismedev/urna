@@ -161,10 +161,9 @@ function cadastrarCandidato() {
     location.replace("inicio.html");
 }
 
-function zeresima(x)
+function zeresima()
 {	
-	if(!x)
-	{
+
 		nome = ['Nulo', 'Branco','Chapa 3','Chapa 4', 'Chapa 5','Chapa 2','Chapa 1'];
 		numero = ['nulo', 'BR', '03', '04','05', '02', '01'];
 		for(i = 0; i < nome.length; i++)
@@ -172,25 +171,35 @@ function zeresima(x)
 			localStorage.setItem(nome[i],JSON.stringify({"nome": nome[i], "numero": numero[i], "votos": 0 }))
 		}
 		location.replace("resultados.html");
-	}
-	else
-	{
-		convertePDF()
-	}
 }
 
-function convertePDF()
+function convertePDF(x)
 {
 	let pdf = new jsPDF('p', 'pt', 'letter');
-	pdf.text(130, 70, 'PREFEITURA MUNICIPAL DE PARNAMIRIM/RN');
-	pdf.text(101.5, 90, 'SECRETARIA MUNICIPAL DE EDUCAÇÃO E CULTURA');
-	pdf.text(50, 110,'COORDENADORIA DE DESENVOLVIMENTO DA GESTÃO ESCOLAR');
-	pdf.text(135, 130, 'SETOR DE TECNOLOGIA EDUCACIONAL/GTI');
-    pdf.text(90, 220, 'Resultado da Eleição para Diretor Administrativo-Financeiro');
-	pdf.text(100,240, 'e Pedagógico das unidades de ensino(triênio 2022-2024).');
-	pdf.text(253.5, 430, 'Parnamirim/RN, '+tempo());
-	pdf.text(184, 620, '________________________________');
-	pdf.text(202.5, 650, 'ASSINATURA DO MESÁRIO/MAT');
+	if(!x)
+	{
+		pdf.text(130, 70, 'PREFEITURA MUNICIPAL DE PARNAMIRIM/RN');
+		pdf.text(101.5, 90, 'SECRETARIA MUNICIPAL DE EDUCAÇÃO E CULTURA');
+		pdf.text(50, 110,'COORDENADORIA DE DESENVOLVIMENTO DA GESTÃO ESCOLAR');
+		pdf.text(135, 130, 'SETOR DE TECNOLOGIA EDUCACIONAL/GTI');
+		pdf.text(90, 220, 'Resultado da Eleição para Diretor Administrativo-Financeiro');
+		pdf.text(100,240, 'e Pedagógico das unidades de ensino(triênio 2022-2024).');
+		pdf.text(253.5, 430, 'Parnamirim/RN, '+getTempo()+" - "+getHora()+" ");
+		pdf.text(184, 620, '________________________________');
+		pdf.text(202.5, 650, 'ASSINATURA DO MESÁRIO/MAT');
+	}
+	if(x)
+	{
+		pdf.text(130, 70, 'UNICIPAL DE PARNAMIRIM/RN');
+		pdf.text(101.5, 90, 'SECRETARIA MUNICIPAL DE EDUCAÇÃO E CULTURA');
+		pdf.text(50, 110,'COORDENADORIA DE DESENVOLVIMENTO DA GESTÃO ESCOLAR');
+		pdf.text(135, 130, 'SETOR DE TECNOLOGIA EDUCACIONAL/GTI');
+		pdf.text(90, 220, 'Resultado da Eleição para Diretor Administrativo-Financeiro');
+		pdf.text(100,240, 'e Pedagógico das unidades de ensino(triênio 2022-2024).');
+		pdf.text(253.5, 430, 'Parnamirim/RN, '+getTempo()+" - "+getHora()+" ");
+		pdf.text(184, 620, '________________________________');
+		pdf.text(202.5, 650, 'ASSINATURA DO MESÁRIO/MAT');
+	}
 
     source = $('#div_tabela')[0];
 
@@ -220,7 +229,8 @@ function convertePDF()
 
 		function (dispose) {
 
-		    pdf.save('Resultados '+tempo()+'.pdf');
+		    //pdf.save('Resultados '+getTempo()+'.pdf');
+			pdf.save('Resultados.pdf');
 			//window.open(pdf.output('bloburl')); // to debug
 		}, margins
 	);
@@ -274,26 +284,32 @@ function atualizarLocalStorage() {
 	}
 }
 
-function tempo()
+function getTempo()
 {
 	let currentDate = new Date();
 	var mes = monthNames[currentDate.getMonth()]
 	var dia = currentDate.getDate();
 	var ano = currentDate.getFullYear();
 
-	/*hora = botar_zeros(currentDate.getHours());
-	minuto = botar_zeros(currentDate.getMinutes());
-	segundo = botar_zeros(currentDate.getSeconds());*/
-	//let time = hora + ":" + minuto;
-	let time = dia + " de " + mes + " de " + ano;
-	return time;
+	let tempo = dia + " de " + mes + " de " + ano;
+	return tempo;
 }
 
-/*colocar zeros no tempo, se não, ficaria, por ex: 22:2:5
+function getHora()
+{
+	let currentDate = new Date();
+	hora = botar_zeros(currentDate.getHours());
+	minuto = botar_zeros(currentDate.getMinutes());
+	segundo = botar_zeros(currentDate.getSeconds());
+	let horas = hora + ":" + minuto+":"+segundo;
+	return horas;
+}
+
+//colocar zeros no tempo, se não, ficaria, por ex: 22:2:5
 function botar_zeros(x)
 {
 	if(x < 10)
 		x = "0" + x;
 	return x;
 }
-*/
+

@@ -11,6 +11,62 @@
 </head>
 
 <body>
+	<script>
+		window.addEventListener("keydown", function (event) {
+		if (event.defaultPrevented) {
+			return; // Do nothing if the event was already processed
+		}
+
+		switch (event.key) {
+			case "0":
+				botao(0)
+			break;
+			case "1":
+				botao(1)
+			break;
+			case "2":
+				botao(2)
+			break;
+			case "3":
+				botao(3)
+			break;
+			case "4":
+				botao(4)
+			break;
+			case "5":
+				botao(5)
+			break;
+			case "6":
+				botao(6)
+			break;
+			case "7":
+				botao(7)
+			break;
+			case "8":
+				botao(8)
+			break;
+			case "9":
+				botao(9)
+			break;
+			case "Enter":
+				confirma()
+			break;
+			case "Escape":
+				end()
+			break;
+			case "Decimal":
+				corrige()
+			break;
+			case "Add":
+				branco()
+			break;
+			return; // Quit when this doesn't handle the key event.
+		}
+
+		// Cancel the default action to avoid it being handled twice
+		event.preventDefault();
+		}, true);
+	</script>
 	<div id="div_caidodatos_e_teclas">
 		<div id ="candidatos">
 			<div style="margin-left: -40%;margin-right: 40%;margin-top: 20%;">
