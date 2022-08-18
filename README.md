@@ -4,10 +4,12 @@ https://parnamirim.rn.gov.br/newsItem.jsp?p=12716
 
 # Objetivos:
  - Tela inicial antes da votação que limpa os votos :white_check_mark:
- - Tela para zerésima 
+ - Opção na tela inicial para continuar a votação, caso o navegador feche :white_check_mark:
+ - Tela para zerésima :white_check_mark:
  - Tela para votação :white_check_mark:
  - Senha para finalizar a votação :white_check_mark:
  - Tela para imprimir o resultado em PDF :white_check_mark:
+ - Funcionamento com teclado
  - Funcionamento com o Firefox :x:
 
 # :toolbox: Ferramentas usadas
