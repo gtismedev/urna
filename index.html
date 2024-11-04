@@ -1,40 +1,81 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<script src='scripts/main.js'></script>
-		<link rel="stylesheet" type="text/css" href="styles/style.css"/>
-		<script src="scripts/jquery.min.js"></script>
-		<script src="scripts/html2canvas.js"></script>
-		<script src="scripts/jspdf.js"></script>
-	</head>
-	<body>
-		<div id="divPai">
-			<div id="divFilho">
-				<div id="prefeitura">
-					<img style="border: 0px solid ; width: 700px; height: 400px;" src="img/parnamirim.png" alt="some text">
-				</div>
-				<div id="texto_boas_vindas">
-					<h1>ELEIÇÃO<br>• Diretor ‎‏‏‎ ‎Administrativo-financeiro<br>• diretor‏‏‎ ‎ pedagógico<br>triênio 2022 - 2024</h1>
-				</div>
-			</div>
-			<div id="GTI">
-				<img style="width: 150px; height: 150px; margin-left:10%;margin-bottom:5%;" src="img/ste.png" alt="some text">
-			</div>
-			<div id="voteAqui">
-				<ul>
-					<!--p style="margin-right:7%;font-size:20px">Clique aqui para</p-->
-					<li>
-						<button id="botaoInicio" onclick="zeresima()">INICIAR URNA</button>
-					</li>
-					<li>
-						<button id="botaoInicio" onclick="iniciar()">CONTINUAR URNA</button>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div id="meuFooter">
-			Setor de Tecnologia Educacional/GTI.
-		</div>
-	</body>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__img-container">
+        <img
+          src="./img/logo-parnamirim.svg"
+          class="header__img--sme"
+          alt="Logo da SME"
+        />
+      </div>
+      <div class="header__nav">
+        <img
+          src="./img/logo-fundo-branco-texto.png"
+          alt="Logo do GTI"
+          class="header__img--logo"
+        />
+      </div>
+    </header>
+    <div id="divPai">
+      <div id="divFilho">
+        <div class="title">
+          <h1>Eleições: Gestores Escolares</h1>
+          <p class="sub-title">Triênio 2025-2027</p>
+          <p class="directors">
+            • Diretor Administrativo <br />• Diretor Pedagógico
+          </p>
+        </div>
+        <img src="img/urna.svg" alt="" />
+      </div>
+      <div id="voteAqui">
+        <ul>
+          <!--p style="margin-right:7%;font-size:20px">Clique aqui para</p-->
+          <li>
+            <button id="botaoInicio" onclick="zeresima()">
+              INICIAR VOTAÇÃO
+            </button>
+          </li>
+          <li>
+            <button id="botaoInicio" onclick="iniciar()">
+              CONTINUAR VOTAÇÃO
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <footer>
+      <div class="developer">
+        Desenvolvido pela GTI - <span id="year"></span>
+      </div>
+    </footer>
+
+    <script>
+      let year = document.getElementById("year");
+      let getDate = new Date();
+      let atualYear = getDate.getFullYear();
+
+      year.innerText = atualYear;
+    </script>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/html2canvas.js"></script>
+    <script src="scripts/jspdf.js"></script>
+  </body>
 </html>

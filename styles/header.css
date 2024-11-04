@@ -1,0 +1,47 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5.5rem;
+  background-color: #ffff;
+  box-shadow: 0 -.019rem .375rem #00000040;
+  padding: 0 4.5rem;
+}
+
+.header__img-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.header__img {
+  width: 12rem;
+}
+
+.header__img--sme {
+  width: 100%;
+}
+
+.header__img--year {
+  width: 5rem;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav__link {
+  color: #1c3152;
+  font-size: 1rem;
+  text-decoration: none;
+  font-family: Inter, monospace;
+  font-weight: 500;
+}
+
+.header__img--logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16rem;
+}

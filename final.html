@@ -1,33 +1,49 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="scripts/main.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/html2canvas.js"></script>
+    <script src="scripts/jspdf.js"></script>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+  </head>
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<script src='scripts/main.js'></script>
-	<script src="scripts/jquery.min.js"></script>
-	<script src="scripts/html2canvas.js"></script>
-	<script src="scripts/jspdf.js"></script>
-	<link rel="stylesheet" type="text/css" href="styles/style.css"/>
-</head>
-
-<body>
-	<script>
-		setTimeout(function(){
-					location.replace("inicio.html");
-				}, 10000);
-	</script>
-	<div id="elementos">
-		<div>
-			<h1>OBRIGADO PELO SEU VOTO!</h1>
-		</div>
-		<div>
-			<img id="ok" src="img/vel.png" width=492 height=416>
-		</div>
-	</div>
-	<div id="meuFooter">
-		Setor de Tecnologia Educacional/GTI.
-	</div>
-</body>
-
+  <body>
+    <script>
+      setTimeout(function () {
+        location.replace("inicio.html");
+      }, 2000);
+    </script>
+    <header class="header">
+      <div class="header__img-container">
+        <img
+          src="./img/logo-parnamirim.svg"
+          class="header__img--sme"
+          alt="Logo da SME"
+        />
+      </div>
+      <div class="header__nav">
+        <img
+          src="./img/logo-fundo-branco-texto.png"
+          alt="Logo do GTI"
+          class="header__img--logo"
+        />
+      </div>
+    </header>
+    <div id="elementos">
+      <div>
+        <h1>OBRIGADO PELO SEU VOTO!</h1>
+      </div>
+      <div>
+        <img id="ok" src="img/vel.png" width="492" height="416" />
+      </div>
+    </div>
+    <footer>
+      <div class="developer">Desenvolvido pela GTI - 2024</div>
+    </footer>
+  </body>
 </html>

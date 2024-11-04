@@ -1,0 +1,9 @@
+.developer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: #2F528A;
+  font-size: 1rem;
+  padding: 1rem 0;
+}
