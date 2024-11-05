@@ -166,13 +166,13 @@ function cadastrarCandidato() {
   nome = [
     "Nulo",
     "Branco",
+    "Chapa 1",
+    "Chapa 2",
     "Chapa 3",
     "Chapa 4",
     "Chapa 5",
-    "Chapa 2",
-    "Chapa 1",
   ];
-  numero = ["nulo", "BR", "03", "04", "05", "02", "01"];
+  numero = ["nulo", "BR", "01", "02", "03", "04", "05"];
   for (i = 0; i < nome.length; i++) {
     localStorage.setItem(
       nome[i],
@@ -211,15 +211,11 @@ function convertePDF(x) {
     pdf.text(140, 90, "SECRETARIA MUNICIPAL DE EDUCAÇÃO");
     pdf.text(50, 110, "COORDENADORIA DE DESENVOLVIMENTO DA GESTÃO ESCOLAR");
     pdf.text(135, 130, "SETOR DE TECNOLOGIA EDUCACIONAL/GTI");
-    pdf.text(
-      90,
-      220,
-      "Resultado da Eleição para Diretor Administrativo-Financeiro"
-    );
+    pdf.text(120, 220, "Resultado da Eleição para Diretor Administrativo");
     pdf.text(
       100,
       240,
-      "e Pedagógico das unidades de ensino(triênio 2022-2024)."
+      "e Pedagógico das unidades de ensino(triênio 2025-2027)."
     );
     pdf.text(
       200,
@@ -230,15 +226,11 @@ function convertePDF(x) {
     pdf.text(202.5, 650, "ASSINATURA DO MESÁRIO/MAT");
   }
   if (x) {
-    pdf.text(130, 70, "UNICIPAL DE PARNAMIRIM/RN");
+    pdf.text(130, 70, "PREFEITURA MUNICIPAL DE PARNAMIRIM/RN");
     pdf.text(101.5, 90, "SECRETARIA MUNICIPAL DE EDUCAÇÃO E CULTURA");
     pdf.text(50, 110, "COORDENADORIA DE DESENVOLVIMENTO DA GESTÃO ESCOLAR");
     pdf.text(135, 130, "SETOR DE TECNOLOGIA EDUCACIONAL/GTI");
-    pdf.text(
-      90,
-      220,
-      "Resultado da Eleição para Diretor Administrativo-Financeiro"
-    );
+    pdf.text(120, 220, "Resultado da Eleição para Diretor Administrativo");
     pdf.text(
       100,
       240,
@@ -314,7 +306,6 @@ function preenche_lista() {
       cont++;
       i += 2;
     }
-
     /*cont=0,i=5;
 	cont=1,i=4;
 	cont=2,i=3;
@@ -354,4 +345,11 @@ function getHora() {
 function botar_zeros(x) {
   if (x < 10) x = "0" + x;
   return x;
+}
+
+function blockButton() {
+  let buttonStart = document.getElementById("botaoInicio");
+  if (listaVoto.length > 0) {
+    buttonStart.style.display = "none";
+  }
 }

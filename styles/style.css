@@ -21,9 +21,16 @@ body {
   background-color: #c1c1c1;
   color: white;
   border: none;
+  border-radius: 10px;
 }
-#botaoInicio:hover {
+#botaoInicio:hover,
+#botaoInicioR:hover,
+#botaoComecar:hover {
   background-color: #1c3152;
+}
+
+.buttons-result {
+  margin-top: 2rem;
 }
 
 #divPai {
@@ -37,11 +44,11 @@ body {
 #divFilho {
   display: flex;
   flex-direction: column;
-    align-items: center;
+  align-items: center;
 }
 
 #divFilho > img {
-    width: 40%;
+  width: 40%;
 }
 
 .title {
@@ -65,59 +72,87 @@ body {
 }
 
 .title > .directors {
-    margin-top: 1rem;
-    font-size: 1.5rem;
-    color: #1c3152;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: #1c3152;
 }
 /*-----------------INDEX.HTML-----------------*/
 
 #div_caidodatos_e_teclas {
   display: flex;
-  flex-direction: row;
-  margin-top: -3%;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  min-height: 72vh;
 }
 
 #candidatos {
   display: flex;
-  flex-direction: row;
-  margin: 8% 0% 0% 5%;
-  background: #d6e7e7;
-  padding: 9% 5% 0% 25%;
-  border-style: solid;
-  border-color: #000;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+  height: 400px;
+  background: #2f528a;
+  box-shadow: -4px 4px 0px 0px #1c3152;
+  border-radius: 10px;
+}
+
+.background-chapa-img {
+  background-color: #fff;
+  width: 200px;
+  height: 173px;
+  border-radius: 10px;
+  border: none;
+}
+
+.background-chapa-img > img {
+  border: none;
+}
+
+.selected-number {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 #tela_numero {
-  margin: 0px 85px 0px 0px;
   border-style: solid;
+  border: 1px solid #1c3152;
+  height: 2.5rem;
+  background-color: #fff;
+  color: #1c3152;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #static_number_indicator {
-  margin: 0% -10% 0% -20%;
+  color: #fff;
+  font-size: 1.5rem;
 }
 
 .chapas {
   display: none;
-  margin-top: 30%;
 }
 
 #teclas {
   display: flex;
   flex-direction: column;
-  align-items: end;
 }
 
 #numpadPai {
-  margin-right: 8%;
-  margin-top: -5.5%;
   background-color: #444444;
   padding: 40px 20px 20px 0px;
+  border-radius: 10px;
+  box-shadow: -4px 4px 0px 0px #292929;
 }
 
 #numpadPai button {
   height: 85px;
   width: 85px;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 #numpad {
@@ -138,8 +173,6 @@ body {
   color: white;
   font-size: 30px;
   float: right;
-  border-style: solid;
-  border-color: white;
 }
 
 #buttonON,
@@ -149,57 +182,69 @@ body {
   color: white;
 }
 
+.white {
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+}
+
+.to-correct {
+  background-color: #df6d46;
+  border: none;
+  border-radius: 10px;
+}
+
+.confirm {
+  background-color: #3ab54a;
+  border: none;
+  border-radius: 10px;
+}
+
 #buttonOFF:active {
   border-style: outset;
 }
 
 #candidatos img {
-  border-style: solid;
-  background-color: #d6e7e7;
   width: 200px;
   height: 173px;
 }
 
 #finalizar {
-  font-size: 15px;
-  text-align: right;
-  margin-right: 12%;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+#finalizar > button {
+  background-color: #c1c1c1;
+  color: #fff;
+  height: 70px;
+  width: 200px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1em;
+}
+
+#finalizar > button:hover {
+  background-color: #1c3152;
 }
 
 /*-----------------FINAL.HTML-----------------*/
 
 #elementos {
-  background-color: #d6e7e7;
-  margin: 1%;
-  padding: 22.1%;
-  border-style: solid;
   border-color: #000;
   display: flex;
   flex-direction: column;
+  min-height: 86vh;
+  align-items: center;
+  justify-content: center;
 }
 
 #elementos h1 {
-  color: white;
+  color: #1c3152;
+  font-weight: 600;
   text-transform: uppercase;
   font-size: 70px;
-  text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000,
-    1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    2px 4px 5px #000;
   text-align: center;
-  margin-top: -280px;
-}
-
-#ok {
-  width: 492px;
-  height: 416px;
-  position: absolute; /*Can also be `fixed`*/
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  /*Solves a problem in which the content is being cut when the div is smaller than its' wrapper:*/
-  max-width: 100%;
-  max-height: 100%;
-  overflow: auto;
 }

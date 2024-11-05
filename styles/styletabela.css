@@ -1,45 +1,34 @@
 #tabela {
-    border-collapse: collapse;
-    margin: 5% 0 25px 25%;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-collapse: collapse;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 
-    width:50%;
+  width: 900px;
 }
 
+#tabela tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-#tabela thead tr {
-    background-color: #c7c7c7;
-    color: #000;
-    text-align: center;
+#tabela tr:hover {
+  background-color: #ddd;
 }
 
 #tabela th,
 #tabela td {
-    padding: 12px 15px;
+  border: 1px solid #ddd;
+  padding: 8px;
+  color: #1c3152;
+  text-align: center;
 }
 
- tbody tr {
-    border-bottom: 1px solid #dddddd;
-    text-align:center;
-    transition: background 0.25s ease;
+tbody tr {
+  text-align: center;
+  transition: background 0.25s ease;
 }
 
- tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
- tbody tr:last-of-type {
-    border-bottom: 2px solid #105469;
-}
-
-tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
-}
-tbody tr:hover {
-  background: #014055;
-  color:white;
+tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
 }

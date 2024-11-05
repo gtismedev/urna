@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" style="background-color: #d5e7e7">
+<html lang="pt-br">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="scripts/main.js"></script>
@@ -8,27 +8,9 @@
     <link rel="stylesheet" href="styles/footer.css" />
     <link rel="stylesheet" type="text/css" href="styles/styletabela.css" />
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
-    <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/html2canvas.js"></script>
-    <script src="scripts/jspdf.js"></script>
   </head>
 
-  <body onload="carregaDados()" style="background-color: #d5e7e7">
-    <script>
-      var para = new URLSearchParams(window.location.search);
-      var pass = para.get("iniciado");
-      setTimeout(function () {
-        if (pass) {
-          var sumir = document.getElementById("botaoComecar");
-          var R = document.getElementById("botaoInicioR");
-          var Z = document.getElementById("botaoInicio");
-          sumir.style.display = "none";
-          R.style.display = "initial";
-          Z.style.display = "none";
-          //document.getElementById('botaoInicio').textContent = 'RESULTADO';
-        }
-      }, 1);
-    </script>
+  <body onload="carregaDados()">
     <header class="header">
       <div class="header__img-container">
         <img
@@ -45,50 +27,61 @@
         />
       </div>
     </header>
-    <div id="div_tabela">
-      <table border="1" id="tabela">
-        <thead>
-          <tr>
-            <td>Candidatos</td>
-            <td>Número</td>
-            <td>Votos</td>
-          </tr>
-        </thead>
-        <tbody id="tabela_corpo"></tbody>
-      </table>
-      <!--div id="imagens" style="display:flex;margin-left:-2%;margin-top:-3%">
-            <img width=350 height=200 style="" src="img/parnamirim.png" alt="some text">
-            <img width=70 height=70 style="margin-top:4%;" src="img/ste.png" alt="some text">
-        </div-->
+    <div id="divPai">
+      <div id="div_tabela">
+        <table border="1" id="tabela">
+          <thead>
+            <tr>
+              <td>Candidatos</td>
+              <td>Número</td>
+              <td>Votos</td>
+            </tr>
+          </thead>
+          <tbody id="tabela_corpo"></tbody>
+        </table>
+        <!--div id="imagens" style="display:flex;margin-left:-2%;margin-top:-3%">
+              <img width=350 height=200 style="" src="img/parnamirim.png" alt="some text">
+              <img width=70 height=70 style="margin-top:4%;" src="img/ste.png" alt="some text">
+          </div-->
+      </div>
+      <div class="buttons-result">
+        <button id="botaoInicio" onclick="convertePDF(true)">
+          BAIXAR ZERÉSIMA
+        </button>
+        <button
+          style="display: none"
+          id="botaoInicioR"
+          onclick="convertePDF(false)"
+        >
+          RESULTADO
+        </button>
+        <button id="botaoComecar" onclick="cadastrarCandidato()">
+          INICIAR VOTAÇÃO
+        </button>
+      </div>
     </div>
-    <button
-      id="botaoInicio"
-      style="font-size: 30px; margin-left: 37%; display: initial"
-      onclick="convertePDF(true)"
-    >
-      BAIXAR ZERÉSIMA
-    </button>
-    <button
-      id="botaoInicioR"
-      style="font-size: 30px; margin-left: 37%; display: none"
-      onclick="convertePDF(false)"
-    >
-      RESULTADO
-    </button>
-    <button
-      id="botaoComecar"
-      style="
-        font-size: 30px;
-        margin-left: 37%;
-        display: initial;
-        margin-top: 1%;
-      "
-      onclick="cadastrarCandidato()"
-    >
-      INICIAR VOTAÇÃO
-    </button>
+
     <footer>
       <div class="developer">Desenvolvido pela GTI - 2024</div>
     </footer>
+
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/html2canvas.js"></script>
+    <script src="scripts/jspdf.js"></script>
+    <script>
+      var para = new URLSearchParams(window.location.search);
+      var pass = para.get("iniciado");
+      setTimeout(function () {
+        if (pass) {
+          var sumir = document.getElementById("botaoComecar");
+          var R = document.getElementById("botaoInicioR");
+          var Z = document.getElementById("botaoInicio");
+          sumir.style.display = "none";
+          R.style.display = "initial";
+          Z.style.display = "none";
+          //document.getElementById('botaoInicio').textContent = 'RESULTADO';
+        }
+      }, 1);
+    </script>
   </body>
 </html>

@@ -2,10 +2,6 @@
 <html lang="pt-br">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script src="scripts/main.js"></script>
-    <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/html2canvas.js"></script>
-    <script src="scripts/jspdf.js"></script>
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/header.css" />
     <link rel="stylesheet" href="styles/footer.css" />
@@ -13,11 +9,6 @@
   </head>
 
   <body>
-    <script>
-      setTimeout(function () {
-        location.replace("inicio.html");
-      }, 2000);
-    </script>
     <header class="header">
       <div class="header__img-container">
         <img
@@ -35,7 +26,7 @@
       </div>
     </header>
     <div id="elementos">
-      <div>
+      <div class="congratulation-text">
         <h1>OBRIGADO PELO SEU VOTO!</h1>
       </div>
       <div>
@@ -45,5 +36,15 @@
     <footer>
       <div class="developer">Desenvolvido pela GTI - 2024</div>
     </footer>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/html2canvas.js"></script>
+    <script src="scripts/jspdf.js"></script>
+    <script>
+      setTimeout(function () {
+        location.replace("inicio.html");
+      }, 10000);
+    </script>
   </body>
 </html>
