@@ -208,7 +208,7 @@ function convertePDF(x) {
   let pdf = new jsPDF("p", "pt", "letter");
   if (!x) {
     pdf.text(130, 70, "PREFEITURA MUNICIPAL DE PARNAMIRIM/RN");
-    pdf.text(140, 90, "SECRETARIA MUNICIPAL DE EDUCAÇÃO");
+    pdf.text(150, 90, "SECRETARIA MUNICIPAL DE EDUCAÇÃO");
     pdf.text(50, 110, "COORDENADORIA DE DESENVOLVIMENTO DA GESTÃO ESCOLAR");
     pdf.text(135, 130, "SETOR DE TECNOLOGIA EDUCACIONAL/GTI");
     pdf.text(120, 220, "Resultado da Eleição para Diretor Administrativo");
@@ -227,14 +227,14 @@ function convertePDF(x) {
   }
   if (x) {
     pdf.text(130, 70, "PREFEITURA MUNICIPAL DE PARNAMIRIM/RN");
-    pdf.text(101.5, 90, "SECRETARIA MUNICIPAL DE EDUCAÇÃO E CULTURA");
+    pdf.text(150, 90, "SECRETARIA MUNICIPAL DE EDUCAÇÃO");
     pdf.text(50, 110, "COORDENADORIA DE DESENVOLVIMENTO DA GESTÃO ESCOLAR");
     pdf.text(135, 130, "SETOR DE TECNOLOGIA EDUCACIONAL/GTI");
     pdf.text(120, 220, "Resultado da Eleição para Diretor Administrativo");
     pdf.text(
       100,
       240,
-      "e Pedagógico das unidades de ensino(triênio 2022-2024)."
+      "e Pedagógico das unidades de ensino(triênio 2025-2027)."
     );
     pdf.text(
       200,
@@ -349,7 +349,9 @@ function botar_zeros(x) {
 
 function blockButton() {
   let buttonStart = document.getElementById("botaoInicio");
+  let buttonsContainer = document.getElementById("buttons-container");
   if (listaVoto.length > 0) {
+    buttonsContainer.style.gap = "0px";
     buttonStart.style.display = "none";
   }
 }
