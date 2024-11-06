@@ -349,9 +349,13 @@ function botar_zeros(x) {
 
 function blockButton() {
   let buttonStart = document.getElementById("botaoInicio");
+  let buttonContinue = document.getElementById("botaoContinuar");
   let buttonsContainer = document.getElementById("buttons-container");
   if (listaVoto.length > 0) {
     buttonsContainer.style.gap = "0px";
     buttonStart.style.display = "none";
+  } else {
+    buttonsContainer.style.gap = "0px";
+    buttonContinue.style.display = "none";
   }
 }

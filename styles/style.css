@@ -12,7 +12,8 @@ body {
 
 #botaoInicio,
 #botaoInicioR,
-#botaoComecar {
+#botaoComecar,
+#botaoContinuar {
   height: 70px;
   width: 200px;
   cursor: pointer;
@@ -25,7 +26,8 @@ body {
 }
 #botaoInicio:hover,
 #botaoInicioR:hover,
-#botaoComecar:hover {
+#botaoComecar:hover,
+#botaoContinuar:hover {
   background-color: #1c3152;
 }
 
