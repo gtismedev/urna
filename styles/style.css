@@ -50,7 +50,7 @@ body {
 }
 
 #divFilho > img {
-  width: 40%;
+  width: 50%;
 }
 
 .title {
@@ -59,7 +59,6 @@ body {
   justify-content: center;
   flex-direction: column;
   gap: 0.5rem;
-  margin-bottom: 2rem;
 }
 
 .title > h1 {
