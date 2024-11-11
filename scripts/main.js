@@ -7,7 +7,7 @@ var numero = "",
 let listaVoto = [];
 var hora, minuto, segundo;
 var iniciado = false;
-//const p = ''; isso seria uma senha
+const password = "1739";
 const monthNames = [
   "Janeiro",
   "Fevereiro",
@@ -148,18 +148,15 @@ function showHide(my_id) {
 }
 
 function end() {
-  //var verificante = prompt('Insira a senha para continuar');
-  //if(verificante == p)
-  //{
-  var para = new URLSearchParams();
-  para.append("iniciado", true);
-  location.href = "resultados.html?" + para.toString();
-  //location.replace("resultados.html");
-  //}
-  //else
-  //{
-  //	alert('Senha incorreta. Tente novamente.');
-  //}
+  let userPassword = prompt("Digite a senha");
+
+  if (userPassword === password) {
+    var para = new URLSearchParams();
+    para.append("iniciado", true);
+    location.href = "resultados.html?" + para.toString();
+  } else {
+    window.alert("Senha incorreta");
+  }
 }
 
 function cadastrarCandidato() {
@@ -201,7 +198,13 @@ function zeresima() {
       JSON.stringify({ nome: nome[i], numero: numero[i], votos: 0 })
     );
   }
-  location.replace("resultados.html");
+  let userPassword = prompt("Digite a senha");
+
+  if (userPassword === password) {
+    location.replace("resultados.html");
+  } else {
+    window.alert("Senha incorreta");
+  }
 }
 
 function convertePDF(x) {
@@ -211,38 +214,30 @@ function convertePDF(x) {
     pdf.text(150, 90, "SECRETARIA MUNICIPAL DE EDUCAÇÃO");
     pdf.text(50, 110, "COORDENADORIA DE DESENVOLVIMENTO DA GESTÃO ESCOLAR");
     pdf.text(135, 130, "SETOR DE TECNOLOGIA EDUCACIONAL/GTI");
-    pdf.text(120, 220, "Resultado da Eleição para Diretor Administrativo");
-    pdf.text(
-      100,
-      240,
-      "e Pedagógico das unidades de ensino(triênio 2025-2027)."
-    );
+    pdf.text(150, 220, "Resultado da Eleição: Gestores Escolares");
+    pdf.text(230, 240, "(triênio 2025-2027).");
     pdf.text(
       200,
       430,
       "Parnamirim/RN, " + getTempo() + " - " + getHora() + " "
     );
-    pdf.text(184, 620, "________________________________");
-    pdf.text(202.5, 650, "ASSINATURA DO MESÁRIO/MAT");
+    pdf.text(170, 620, "________________________________");
+    pdf.text(182, 650, "COMISSÃO ELEITORAL ESCOLAR");
   }
   if (x) {
     pdf.text(130, 70, "PREFEITURA MUNICIPAL DE PARNAMIRIM/RN");
     pdf.text(150, 90, "SECRETARIA MUNICIPAL DE EDUCAÇÃO");
     pdf.text(50, 110, "COORDENADORIA DE DESENVOLVIMENTO DA GESTÃO ESCOLAR");
     pdf.text(135, 130, "SETOR DE TECNOLOGIA EDUCACIONAL/GTI");
-    pdf.text(120, 220, "Resultado da Eleição para Diretor Administrativo");
-    pdf.text(
-      100,
-      240,
-      "e Pedagógico das unidades de ensino(triênio 2025-2027)."
-    );
+    pdf.text(150, 220, "Resultado da Eleição: Gestores Escolares");
+    pdf.text(230, 240, "(triênio 2025-2027).");
     pdf.text(
       200,
       430,
       "Parnamirim/RN, " + getTempo() + " - " + getHora() + " "
     );
-    pdf.text(184, 620, "________________________________");
-    pdf.text(202.5, 650, "ASSINATURA DO MESÁRIO/MAT");
+    pdf.text(170, 620, "________________________________");
+    pdf.text(182, 650, "COMISSÃO ELEITORAL ESCOLAR");
   }
 
   source = $("#div_tabela")[0];
