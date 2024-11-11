@@ -10,7 +10,7 @@ https://parnamirim.rn.gov.br/newsItem.jsp?p=12716
  - Senha para finalizar a votação :white_check_mark:
  - Tela para imprimir o resultado em PDF :white_check_mark:
  - Funcionamento com teclado
- - Funcionamento com o Firefox :x:
+ - Funcionamento com o Firefox :white_check_mark:
 
 # :toolbox: Ferramentas usadas
  - [jsPDF](https://github.com/parallax/jsPDF)
