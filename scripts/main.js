@@ -1,9 +1,9 @@
 var confirmasfx = new Audio("sons/urna.mp3");
-var teclafx = new Audio("sons/tecla.mp3"); //Som ao teclar.
+var teclafx = new Audio("sons/tecla.mp3");
 var numero = "",
   count = 0,
   troca_img,
-  cont = 0; // csv, hiddenElement,contadorVotos = 0, somaColuna='';
+  cont = 0;
 let listaVoto = [];
 var hora, minuto, segundo;
 var iniciado = false;
@@ -25,6 +25,16 @@ const monthNames = [
 var mes;
 var ls_keys, botaoConfirmar, botaoConfirmarOff;
 var listaVotoNome, listaVotoNumero, listaVotoVotos;
+let voteTotalC1 = 0,
+  voteTotalC2 = 0,
+  voteTotalC3 = 0,
+  voteTotalC4 = 0,
+  voteTotalC5 = 0,
+  voteTeacher = 0,
+  voteEmployee = 0,
+  voteStudent = 0,
+  voteParent = 0;
+
 preenche_lista();
 
 function iniciar() {
@@ -51,6 +61,7 @@ function carregaDados() {
     elementoPai.appendChild(tr);
   }
 }
+
 //registra o voto digitado
 function confirma() {
   if (numero != "") {
@@ -99,17 +110,14 @@ function branco() {
   }
 }
 
-//botão corrige, para apagar os numeros digitados
 function corrige() {
   teclafx.play();
-  //se mandar a variavel sem nada, aparece a imagem do voto nulo, por isso esse if
   if (numero != "" && count == 3) showHide(numero);
   numero = "";
   count = 0;
   document.getElementById("tela_numero").innerHTML = "‎ ";
 }
 
-//serve para registrar os numeros quando um botão numero é pressionado
 function botao(clicked_id) {
   if (count <= 1) {
     numero = numero + clicked_id + "";
@@ -123,9 +131,7 @@ function botao(clicked_id) {
   document.getElementById("tela_numero").innerHTML = numero;
 }
 
-//função pra mostrar a foto do candidato baseado no numero
 function showHide(my_id) {
-  //olha se foi digitado algum numero que nao é uma chapa, se sim, altera o id para nulo
   if (
     my_id != "01" &&
     my_id != "02" &&
@@ -176,8 +182,6 @@ function cadastrarCandidato() {
       JSON.stringify({ nome: nome[i], numero: numero[i], votos: 0 })
     );
   }
-  //alert("Cadidato Cadastrado!")
-  //window.location.href = 'index.html';
   location.replace("inicio.html");
 }
 
@@ -266,9 +270,7 @@ function convertePDF(x) {
     },
 
     function (dispose) {
-      //pdf.save('Resultados '+getTempo()+'.pdf');
       pdf.save("Resultados.pdf");
-      //window.open(pdf.output('bloburl')); // to debug
     },
     margins
   );
@@ -336,7 +338,6 @@ function getHora() {
   return horas;
 }
 
-//colocar zeros no tempo, se não, ficaria, por ex: 22:2:5
 function botar_zeros(x) {
   if (x < 10) x = "0" + x;
   return x;
@@ -354,3 +355,14 @@ function blockButton() {
     buttonContinue.style.display = "none";
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  var selectElement = document.getElementById("type-vote");
+  function getSelectedValue() {
+    var selectedValue = selectElement.value;
+    console.log("voto:", selectedValue);
+  }
+  getSelectedValue();
+  selectElement.addEventListener("change", getSelectedValue);
+});
+//V(x) = ((P(x) + A(x)) * 50)/(P(x) + A(x)) + ((Prof(x) + F(x)) * 50)/(Prof(x) + F(x))
