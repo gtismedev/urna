@@ -30,12 +30,29 @@ function carregaDados() {
   console.log("Função carregaDados chamada.");
   var elementoPai = document.getElementById("tabela_corpo");
 
+  // Limpa o conteúdo da tabela antes de preencher
   elementoPai.innerHTML = "";
 
   console.log("Dados em listaVoto:", listaVoto);
 
   if (listaVoto.length === 0) {
     console.log("Lista de votos está vazia!");
+  }
+
+  // Variáveis totais
+  let totalVotosPais = 0;
+  let totalVotosAlunos = 0;
+  let totalVotosProfessores = 0;
+  let totalVotosFuncionarios = 0;
+
+  // Calcula os totais
+  for (var j = 0; j < listaVoto.length; j++) {
+    if (listaVoto[j].numero !== "nulo" && listaVoto[j].numero !== "BR") {
+      totalVotosPais += listaVoto[j].tipos.parents || 0;
+      totalVotosAlunos += listaVoto[j].tipos.student || 0;
+      totalVotosProfessores += listaVoto[j].tipos.teacher || 0;
+      totalVotosFuncionarios += listaVoto[j].tipos.employee || 0;
+    }
   }
 
   for (var i = 0; i < listaVoto.length; i++) {
@@ -47,43 +64,46 @@ function carregaDados() {
     var votosProfessores = (chapa.tipos && chapa.tipos.teacher) || 0;
     var votosFuncionarios = (chapa.tipos && chapa.tipos.employee) || 0;
 
-    var qtdPaisAlunos =
-      votosPais + votosAlunos !== 0
-        ? ((votosPais + votosAlunos) * 50) / (votosPais + votosAlunos)
-        : 0;
-    var qtdProfessoresFuncionarios =
-      votosProfessores + votosFuncionarios !== 0
-        ? ((votosProfessores + votosFuncionarios) * 50) /
-          (votosProfessores + votosFuncionarios)
-        : 0;
-    var votosTotais = qtdPaisAlunos + qtdProfessoresFuncionarios;
+    if (chapa.numero !== "nulo" && chapa.numero !== "BR") {
+      var parte1 =
+        totalVotosPais + totalVotosAlunos !== 0
+          ? ((votosPais + votosAlunos) * 50) /
+            (totalVotosPais + totalVotosAlunos)
+          : 0;
+      var parte2 =
+        totalVotosProfessores + totalVotosFuncionarios !== 0
+          ? ((votosProfessores + votosFuncionarios) * 50) /
+            (totalVotosProfessores + totalVotosFuncionarios)
+          : 0;
+      var votosTotais = parte1 + parte2;
 
-    var tr = document.createElement("tr");
-    var td1 = document.createElement("td");
-    var td2 = document.createElement("td");
-    var td3 = document.createElement("td");
-    var td4 = document.createElement("td");
-    var td5 = document.createElement("td");
-    var td6 = document.createElement("td");
-    var td7 = document.createElement("td");
+      var tr = document.createElement("tr");
+      var td1 = document.createElement("td");
+      var td2 = document.createElement("td");
+      var td3 = document.createElement("td");
+      var td4 = document.createElement("td");
+      var td5 = document.createElement("td");
+      var td6 = document.createElement("td");
+      var td7 = document.createElement("td");
 
-    td1.textContent = chapa.nome;
-    td2.textContent = chapa.numero;
-    td3.textContent = votosPais;
-    td4.textContent = votosAlunos;
-    td5.textContent = votosProfessores;
-    td6.textContent = votosFuncionarios;
-    td7.textContent = votosTotais.toFixed(0);
+      td1.textContent = chapa.nome;
+      td2.textContent = chapa.numero;
+      td3.textContent = votosPais;
+      td4.textContent = votosAlunos;
+      td5.textContent = votosProfessores;
+      td6.textContent = votosFuncionarios;
+      td7.textContent = votosTotais.toFixed(1);
 
-    tr.appendChild(td1);
-    tr.appendChild(td2);
-    tr.appendChild(td3);
-    tr.appendChild(td4);
-    tr.appendChild(td5);
-    tr.appendChild(td6);
-    tr.appendChild(td7);
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+      tr.appendChild(td4);
+      tr.appendChild(td5);
+      tr.appendChild(td6);
+      tr.appendChild(td7);
 
-    elementoPai.appendChild(tr);
+      elementoPai.appendChild(tr);
+    }
   }
 }
 
@@ -286,33 +306,13 @@ function preenche_lista() {
     listaVoto.push(item);
   }
 
-  // Organiza a lista de votos
-  var i = 5;
-  while (cont <= 3) {
-    listaVotoNome = listaVoto[cont].nome;
-    listaVotoNumero = listaVoto[cont].numero;
-    listaVotoVotos = listaVoto[cont].votos;
-    listaVoto[cont].nome = listaVoto[i].nome;
-    listaVoto[cont].numero = listaVoto[i].numero;
-    listaVoto[cont].votos = listaVoto[i].votos;
-    listaVoto[i].nome = listaVotoNome;
-    listaVoto[i].numero = listaVotoNumero;
-    listaVoto[i].votos = listaVotoVotos;
-    if (cont != 2) {
-      cont++;
-      i--;
-    } else if (cont == 2) {
-      cont++;
-      i += 2;
-    }
-  }
-
   console.log("Dados após organizar listaVoto:", listaVoto);
   return listaVoto;
 }
 
 function atualizarLocalStorage() {
-  for (i = 0; i < listaVoto.length; i++) {
+  console.log("Atualizando localStorage com listaVoto:", listaVoto);
+  for (let i = 0; i < listaVoto.length; i++) {
     localStorage.setItem(listaVoto[i].nome, JSON.stringify(listaVoto[i]));
   }
 }
@@ -350,7 +350,9 @@ function convertePDF(x) {
       "Parnamirim/RN, " + getTempo() + " - " + getHora() + " "
     );
     pdf.text(170, 620, "________________________________");
-    pdf.text(182, 650, "COMISSÃO ELEITORAL ESCOLAR");
+    pdf.text(240, 650, "NOME DA ESCOLA");
+    pdf.text(170, 720, "________________________________");
+    pdf.text(182, 750, "COMISSÃO ELEITORAL ESCOLAR");
   }
 
   let source = document.getElementById("div_tabela");
