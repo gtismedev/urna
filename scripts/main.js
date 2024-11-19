@@ -30,7 +30,6 @@ function carregaDados() {
   console.log("Função carregaDados chamada.");
   var elementoPai = document.getElementById("tabela_corpo");
 
-  // Limpa o conteúdo da tabela antes de preencher
   elementoPai.innerHTML = "";
 
   console.log("Dados em listaVoto:", listaVoto);
@@ -48,17 +47,16 @@ function carregaDados() {
     var votosProfessores = (chapa.tipos && chapa.tipos.teacher) || 0;
     var votosFuncionarios = (chapa.tipos && chapa.tipos.employee) || 0;
 
-    // Calcula V(x) usando a fórmula fornecida, lidando com denominadores zero
-    var parte1 =
+    var qtdPaisAlunos =
       votosPais + votosAlunos !== 0
         ? ((votosPais + votosAlunos) * 50) / (votosPais + votosAlunos)
         : 0;
-    var parte2 =
+    var qtdProfessoresFuncionarios =
       votosProfessores + votosFuncionarios !== 0
         ? ((votosProfessores + votosFuncionarios) * 50) /
           (votosProfessores + votosFuncionarios)
         : 0;
-    var votosTotais = parte1 + parte2;
+    var votosTotais = qtdPaisAlunos + qtdProfessoresFuncionarios;
 
     var tr = document.createElement("tr");
     var td1 = document.createElement("td");
