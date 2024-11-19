@@ -25,32 +25,65 @@ const monthNames = [
 var mes;
 var ls_keys, botaoConfirmar, botaoConfirmarOff;
 var listaVotoNome, listaVotoNumero, listaVotoVotos;
-let voteTotalC1 = 0,
-  voteTotalC2 = 0,
-  voteTotalC3 = 0,
-  voteTotalC4 = 0,
-  voteTotalC5 = 0;
-let voteTeacher = 0,
-  voteEmployee = 0,
-  voteStudent = 0,
-  voteParent = 0;
 
 function carregaDados() {
+  console.log("Função carregaDados chamada.");
   var elementoPai = document.getElementById("tabela_corpo");
 
+  // Limpa o conteúdo da tabela antes de preencher
+  elementoPai.innerHTML = "";
+
+  console.log("Dados em listaVoto:", listaVoto);
+
+  if (listaVoto.length === 0) {
+    console.log("Lista de votos está vazia!");
+  }
+
   for (var i = 0; i < listaVoto.length; i++) {
+    var chapa = listaVoto[i];
+
+    // Verifique se chapa.tipos existe e inicialize se necessário
+    var votosPais = (chapa.tipos && chapa.tipos.parents) || 0;
+    var votosAlunos = (chapa.tipos && chapa.tipos.student) || 0;
+    var votosProfessores = (chapa.tipos && chapa.tipos.teacher) || 0;
+    var votosFuncionarios = (chapa.tipos && chapa.tipos.employee) || 0;
+
+    // Calcula V(x) usando a fórmula fornecida, lidando com denominadores zero
+    var parte1 =
+      votosPais + votosAlunos !== 0
+        ? ((votosPais + votosAlunos) * 50) / (votosPais + votosAlunos)
+        : 0;
+    var parte2 =
+      votosProfessores + votosFuncionarios !== 0
+        ? ((votosProfessores + votosFuncionarios) * 50) /
+          (votosProfessores + votosFuncionarios)
+        : 0;
+    var votosTotais = parte1 + parte2;
+
     var tr = document.createElement("tr");
     var td1 = document.createElement("td");
     var td2 = document.createElement("td");
     var td3 = document.createElement("td");
+    var td4 = document.createElement("td");
+    var td5 = document.createElement("td");
+    var td6 = document.createElement("td");
+    var td7 = document.createElement("td");
 
-    td1.textContent = listaVoto[i].nome;
-    td2.textContent = listaVoto[i].numero;
-    td3.textContent = listaVoto[i].votos;
+    td1.textContent = chapa.nome;
+    td2.textContent = chapa.numero;
+    td3.textContent = votosPais;
+    td4.textContent = votosAlunos;
+    td5.textContent = votosProfessores;
+    td6.textContent = votosFuncionarios;
+    td7.textContent = votosTotais.toFixed(0);
 
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
+    tr.appendChild(td4);
+    tr.appendChild(td5);
+    tr.appendChild(td6);
+    tr.appendChild(td7);
 
     elementoPai.appendChild(tr);
   }
@@ -68,9 +101,9 @@ document.addEventListener("DOMContentLoaded", function () {
   getSelectedValue();
 
   selectElement.addEventListener("change", getSelectedValue);
-
-  preenche_lista();
 });
+
+preenche_lista();
 
 function iniciar() {
   location.replace("inicio.html");
@@ -105,6 +138,7 @@ function zeresima() {
 function confirma() {
   if (numero != "") {
     let tipoVoto = getSelectedValue();
+    console.log("Tipo de Voto Selecionado:", tipoVoto);
     if (
       numero != "01" &&
       numero != "02" &&
@@ -120,8 +154,8 @@ function confirma() {
     botaoConfirmar.style.display = "none";
     botaoConfirmarOff.style.display = "initial";
     confirmasfx.play();
-    for (i = 0; i < listaVoto.length; i++) {
-      if (listaVoto[i].numero == numero) {
+    for (let i = 0; i < listaVoto.length; i++) {
+      if (listaVoto[i].numero === numero) {
         listaVoto[i].votos = parseInt(listaVoto[i].votos + 1);
         if (!listaVoto[i].tipos) {
           listaVoto[i].tipos = {
@@ -138,7 +172,7 @@ function confirma() {
       `Voto computado: Tipo de voto - ${tipoVoto}, Chapa - ${numero}`
     );
     atualizarLocalStorage();
-    if (numero != "" && count == 3) showHide(numero);
+    if (numero !== "" && count === 3) showHide(numero);
     numero = "";
     count = 0;
     document.getElementById("tela_numero").innerHTML = "‎ ";
@@ -233,9 +267,25 @@ function cadastrarCandidato() {
 }
 
 function preenche_lista() {
+  console.log("Função preenche_lista chamada.");
   ls_keys = Object.keys(localStorage);
-  for (i in ls_keys) {
-    listaVoto.push(JSON.parse(localStorage.getItem(ls_keys[i])));
+  listaVoto = []; // Reseta a listaVoto para evitar duplicações
+
+  for (var i in ls_keys) {
+    var item = JSON.parse(localStorage.getItem(ls_keys[i]));
+    console.log("Item encontrado no localStorage:", item);
+
+    // Verifique se item.tipos existe e inicialize se necessário
+    if (!item.tipos) {
+      item.tipos = {
+        teacher: 0,
+        employee: 0,
+        student: 0,
+        parents: 0,
+      };
+    }
+
+    listaVoto.push(item);
   }
 
   // Organiza a lista de votos
@@ -259,6 +309,7 @@ function preenche_lista() {
     }
   }
 
+  console.log("Dados após organizar listaVoto:", listaVoto);
   return listaVoto;
 }
 
