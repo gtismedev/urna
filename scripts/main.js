@@ -328,11 +328,14 @@ function convertePDF(x) {
     pdf.text(230, 240, "(triênio 2025-2027).");
     pdf.text(
       200,
-      430,
+      460,
       "Parnamirim/RN, " + getTempo() + " - " + getHora() + " "
     );
+
     pdf.text(170, 620, "________________________________");
-    pdf.text(182, 650, "COMISSÃO ELEITORAL ESCOLAR");
+    pdf.text(240, 650, "NOME DA ESCOLA");
+    pdf.text(170, 720, "________________________________");
+    pdf.text(182, 750, "COMISSÃO ELEITORAL ESCOLAR");
   }
   if (x) {
     pdf.text(130, 70, "PREFEITURA MUNICIPAL DE PARNAMIRIM/RN");
@@ -343,7 +346,7 @@ function convertePDF(x) {
     pdf.text(230, 240, "(triênio 2025-2027).");
     pdf.text(
       200,
-      430,
+      460,
       "Parnamirim/RN, " + getTempo() + " - " + getHora() + " "
     );
     pdf.text(170, 620, "________________________________");
