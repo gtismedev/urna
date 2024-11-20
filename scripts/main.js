@@ -30,7 +30,6 @@ function carregaDados() {
   console.log("Função carregaDados chamada.");
   var elementoPai = document.getElementById("tabela_corpo");
 
-  // Limpa o conteúdo da tabela antes de preencher
   elementoPai.innerHTML = "";
 
   console.log("Dados em listaVoto:", listaVoto);
@@ -39,13 +38,11 @@ function carregaDados() {
     console.log("Lista de votos está vazia!");
   }
 
-  // Variáveis totais
   let totalVotosPais = 0;
   let totalVotosAlunos = 0;
   let totalVotosProfessores = 0;
   let totalVotosFuncionarios = 0;
 
-  // Calcula os totais
   for (var j = 0; j < listaVoto.length; j++) {
     if (listaVoto[j].numero !== "nulo" && listaVoto[j].numero !== "BR") {
       totalVotosPais += listaVoto[j].tipos.parents || 0;
@@ -58,13 +55,11 @@ function carregaDados() {
   for (var i = 0; i < listaVoto.length; i++) {
     var chapa = listaVoto[i];
 
-    // Verifique se chapa.tipos existe e inicialize se necessário
     var votosPais = (chapa.tipos && chapa.tipos.parents) || 0;
     var votosAlunos = (chapa.tipos && chapa.tipos.student) || 0;
     var votosProfessores = (chapa.tipos && chapa.tipos.teacher) || 0;
     var votosFuncionarios = (chapa.tipos && chapa.tipos.employee) || 0;
 
-    // Calcula V(x) usando a fórmula fornecida, lidando com denominadores zero
     var votosTotais = 0;
     if (chapa.numero !== "nulo" && chapa.numero !== "BR") {
       var parte1 =
@@ -183,7 +178,7 @@ function confirma() {
             parents: 0,
           };
         }
-        listaVoto[i].tipos[tipoVoto] += 1; // Atualiza o tipo de voto
+        listaVoto[i].tipos[tipoVoto] += 1;
       }
     }
     console.log(
@@ -287,13 +282,12 @@ function cadastrarCandidato() {
 function preenche_lista() {
   console.log("Função preenche_lista chamada.");
   ls_keys = Object.keys(localStorage);
-  listaVoto = []; // Reseta a listaVoto para evitar duplicações
+  listaVoto = [];
 
   for (var i in ls_keys) {
     var item = JSON.parse(localStorage.getItem(ls_keys[i]));
     console.log("Item encontrado no localStorage:", item);
 
-    // Verifique se item.tipos existe e inicialize se necessário
     if (!item.tipos) {
       item.tipos = {
         teacher: 0,
