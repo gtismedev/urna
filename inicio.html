@@ -31,7 +31,7 @@
         <div class="selected-number">
           <form>
             <label for="type-vote">Escolha o tipo de voto:</label>
-            <select id="type-vote" name="type-vote">
+            <select id="type-vote" name="type-vote" onchange="verifyVote()">
               <option value="" selected>Selecione</option>
               <option value="teacher">Professor</option>
               <option value="employee">Funcionário</option>
@@ -154,6 +154,19 @@
         },
         true
       );
+
+      function verifyVote() {
+        let userPassword = prompt("Digite a senha para trocar o tipo de voto:");
+
+        if (userPassword === password) {
+          getSelectedValue();
+        } else {
+          alert("Senha incorreta. Não é possível alterar o tipo de voto.");
+
+          var selectElement = document.getElementById("type-vote");
+          selectElement.value = selectElement.defaultValue;
+        }
+      }
     </script>
   </body>
 </html>

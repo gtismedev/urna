@@ -64,6 +64,8 @@ function carregaDados() {
     var votosProfessores = (chapa.tipos && chapa.tipos.teacher) || 0;
     var votosFuncionarios = (chapa.tipos && chapa.tipos.employee) || 0;
 
+    // Calcula V(x) usando a fórmula fornecida, lidando com denominadores zero
+    var votosTotais = 0;
     if (chapa.numero !== "nulo" && chapa.numero !== "BR") {
       var parte1 =
         totalVotosPais + totalVotosAlunos !== 0
@@ -75,35 +77,35 @@ function carregaDados() {
           ? ((votosProfessores + votosFuncionarios) * 50) /
             (totalVotosProfessores + totalVotosFuncionarios)
           : 0;
-      var votosTotais = parte1 + parte2;
-
-      var tr = document.createElement("tr");
-      var td1 = document.createElement("td");
-      var td2 = document.createElement("td");
-      var td3 = document.createElement("td");
-      var td4 = document.createElement("td");
-      var td5 = document.createElement("td");
-      var td6 = document.createElement("td");
-      var td7 = document.createElement("td");
-
-      td1.textContent = chapa.nome;
-      td2.textContent = chapa.numero;
-      td3.textContent = votosPais;
-      td4.textContent = votosAlunos;
-      td5.textContent = votosProfessores;
-      td6.textContent = votosFuncionarios;
-      td7.textContent = votosTotais.toFixed(1);
-
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-      tr.appendChild(td3);
-      tr.appendChild(td4);
-      tr.appendChild(td5);
-      tr.appendChild(td6);
-      tr.appendChild(td7);
-
-      elementoPai.appendChild(tr);
+      votosTotais = parte1 + parte2;
     }
+
+    var tr = document.createElement("tr");
+    var td1 = document.createElement("td");
+    var td2 = document.createElement("td");
+    var td3 = document.createElement("td");
+    var td4 = document.createElement("td");
+    var td5 = document.createElement("td");
+    var td6 = document.createElement("td");
+    var td7 = document.createElement("td");
+
+    td1.textContent = chapa.nome;
+    td2.textContent = chapa.numero;
+    td3.textContent = votosPais;
+    td4.textContent = votosAlunos;
+    td5.textContent = votosProfessores;
+    td6.textContent = votosFuncionarios;
+    td7.textContent = votosTotais.toFixed(2);
+
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+    tr.appendChild(td5);
+    tr.appendChild(td6);
+    tr.appendChild(td7);
+
+    elementoPai.appendChild(tr);
   }
 }
 
@@ -115,8 +117,6 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Tipo de voto selecionado:", selectedValue);
     return selectedValue;
   };
-
-  getSelectedValue();
 
   selectElement.addEventListener("change", getSelectedValue);
 });
