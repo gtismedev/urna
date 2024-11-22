@@ -27,12 +27,9 @@ var ls_keys, botaoConfirmar, botaoConfirmarOff;
 var listaVotoNome, listaVotoNumero, listaVotoVotos;
 
 function carregaDados() {
-  console.log("Função carregaDados chamada.");
   var elementoPai = document.getElementById("tabela_corpo");
 
   elementoPai.innerHTML = "";
-
-  console.log("Dados em listaVoto:", listaVoto);
 
   if (listaVoto.length === 0) {
     console.log("Lista de votos está vazia!");
@@ -59,6 +56,14 @@ function carregaDados() {
     var votosAlunos = (chapa.tipos && chapa.tipos.student) || 0;
     var votosProfessores = (chapa.tipos && chapa.tipos.teacher) || 0;
     var votosFuncionarios = (chapa.tipos && chapa.tipos.employee) || 0;
+
+    if (
+      chapa.numero === "03" ||
+      chapa.numero === "04" ||
+      chapa.numero === "05"
+    ) {
+      continue;
+    }
 
     var votosTotais = 0;
     if (chapa.numero !== "nulo" && chapa.numero !== "BR") {
@@ -106,15 +111,91 @@ function carregaDados() {
 
 document.addEventListener("DOMContentLoaded", function () {
   var selectElement = document.getElementById("type-vote");
+  var botaoConfirmar = document.getElementById("botaoConfirmar");
+
+  var previousValue = selectElement.value;
 
   window.getSelectedValue = function () {
     var selectedValue = selectElement.value;
-    console.log("Tipo de voto selecionado:", selectedValue);
     return selectedValue;
   };
 
-  selectElement.addEventListener("change", getSelectedValue);
+  selectElement.addEventListener("change", function () {
+    var selectedValue = selectElement.value;
+
+    if (promptSenha()) {
+      previousValue = selectedValue;
+      getSelectedValue();
+    } else {
+      selectElement.value = previousValue;
+    }
+  });
 });
+
+function confirma() {
+  var tipoVotoSelecionado = getSelectedValue();
+  if (!tipoVotoSelecionado) {
+    alert("Por favor, selecione um tipo de voto antes de confirmar.");
+    return;
+  }
+
+  if (numero != "") {
+    let tipoVoto = getSelectedValue();
+    console.log(`Voto Tentado: Tipo de voto - ${tipoVoto}, Número - ${numero}`);
+    if (
+      numero != "01" &&
+      numero != "02" &&
+      numero != "03" &&
+      numero != "04" &&
+      numero != "05" &&
+      numero != "BR"
+    ) {
+      numero = "nulo";
+    }
+    botaoConfirmar = document.getElementById("buttonON");
+    botaoConfirmar.disabled = true;
+    botaoConfirmarOff = document.getElementById("buttonOFF");
+    botaoConfirmar.style.display = "none";
+    botaoConfirmarOff.style.display = "initial";
+    confirmasfx.play();
+    let votoComputado = false;
+
+    for (let i = 0; i < listaVoto.length; i++) {
+      if (listaVoto[i].numero === numero) {
+        listaVoto[i].votos = parseInt(listaVoto[i].votos + 1);
+        if (!listaVoto[i].tipos) {
+          listaVoto[i].tipos = {
+            teacher: 0,
+            employee: 0,
+            student: 0,
+            parents: 0,
+          };
+        }
+        listaVoto[i].tipos[tipoVoto] += 1;
+        votoComputado = true;
+        console.log(
+          `Voto computado para: ${listaVoto[i].nome}, Tipo: ${tipoVoto}, Total de Votos: ${listaVoto[i].votos}`
+        );
+        break;
+      }
+    }
+
+    if (!votoComputado) {
+      console.error(
+        `Voto não computado corretamente. Chapa número ${numero} não encontrada.`
+      );
+    }
+
+    atualizarLocalStorage();
+    if (numero !== "" && count === 3) showHide(numero);
+    numero = "";
+    count = 0;
+    document.getElementById("tela_numero").innerHTML = "‎ ";
+    setTimeout(function () {
+      location.replace("final.html");
+    }, 1800);
+  }
+}
 
 preenche_lista();
 
@@ -145,53 +226,6 @@ function zeresima() {
     location.replace("resultados.html");
   } else {
     window.alert("Senha incorreta");
-  }
-}
-
-function confirma() {
-  if (numero != "") {
-    let tipoVoto = getSelectedValue();
-    console.log("Tipo de Voto Selecionado:", tipoVoto);
-    if (
-      numero != "01" &&
-      numero != "02" &&
-      numero != "03" &&
-      numero != "04" &&
-      numero != "05" &&
-      numero != "BR"
-    ) {
-      numero = "nulo";
-    }
-    botaoConfirmar = document.getElementById("buttonON");
-    botaoConfirmarOff = document.getElementById("buttonOFF");
-    botaoConfirmar.style.display = "none";
-    botaoConfirmarOff.style.display = "initial";
-    confirmasfx.play();
-    for (let i = 0; i < listaVoto.length; i++) {
-      if (listaVoto[i].numero === numero) {
-        listaVoto[i].votos = parseInt(listaVoto[i].votos + 1);
-        if (!listaVoto[i].tipos) {
-          listaVoto[i].tipos = {
-            teacher: 0,
-            employee: 0,
-            student: 0,
-            parents: 0,
-          };
-        }
-        listaVoto[i].tipos[tipoVoto] += 1;
-      }
-    }
-    console.log(
-      `Voto computado: Tipo de voto - ${tipoVoto}, Chapa - ${numero}`
-    );
-    atualizarLocalStorage();
-    if (numero !== "" && count === 3) showHide(numero);
-    numero = "";
-    count = 0;
-    document.getElementById("tela_numero").innerHTML = "‎ ";
-    setTimeout(function () {
-      location.replace("final.html");
-    }, 1800);
   }
 }
 
@@ -280,7 +314,6 @@ function cadastrarCandidato() {
 }
 
 function preenche_lista() {
-  console.log("Função preenche_lista chamada.");
   ls_keys = Object.keys(localStorage);
   listaVoto = [];
 
@@ -297,7 +330,9 @@ function preenche_lista() {
       };
     }
 
-    listaVoto.push(item);
+    if (item.numero !== "03" && item.numero !== "04" && item.numero !== "05") {
+      listaVoto.push(item);
+    }
   }
 
   console.log("Dados após organizar listaVoto:", listaVoto);

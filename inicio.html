@@ -159,12 +159,10 @@
         let userPassword = prompt("Digite a senha para trocar o tipo de voto:");
 
         if (userPassword === password) {
-          getSelectedValue();
+          return true;
         } else {
           alert("Senha incorreta. Não é possível alterar o tipo de voto.");
-
-          var selectElement = document.getElementById("type-vote");
-          selectElement.value = selectElement.defaultValue;
+          return false;
         }
       }
     </script>
