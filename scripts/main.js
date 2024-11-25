@@ -66,6 +66,7 @@ function carregaDados() {
     }
 
     var votosTotais = 0;
+    var voteSumTotal = 0;
     if (chapa.numero !== "nulo" && chapa.numero !== "BR") {
       var parte1 =
         totalVotosPais + totalVotosAlunos !== 0
@@ -79,6 +80,8 @@ function carregaDados() {
           : 0;
       votosTotais = parte1 + parte2;
     }
+    voteSumTotal =
+      votosPais + votosAlunos + votosProfessores + votosFuncionarios;
 
     var tr = document.createElement("tr");
     var td1 = document.createElement("td");
@@ -88,6 +91,7 @@ function carregaDados() {
     var td5 = document.createElement("td");
     var td6 = document.createElement("td");
     var td7 = document.createElement("td");
+    var td8 = document.createElement("td");
 
     td1.textContent = chapa.nome;
     td2.textContent = chapa.numero;
@@ -95,7 +99,8 @@ function carregaDados() {
     td4.textContent = votosAlunos;
     td5.textContent = votosProfessores;
     td6.textContent = votosFuncionarios;
-    td7.textContent = votosTotais.toFixed(2);
+    td8.textContent = voteSumTotal;
+    td7.textContent = votosTotais.toFixed(2) + "%";
 
     tr.appendChild(td1);
     tr.appendChild(td2);
@@ -103,6 +108,7 @@ function carregaDados() {
     tr.appendChild(td4);
     tr.appendChild(td5);
     tr.appendChild(td6);
+    tr.appendChild(td8);
     tr.appendChild(td7);
 
     elementoPai.appendChild(tr);
@@ -132,6 +138,19 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+function verifyVote() {
+  passwordRight = false;
+
+  while (!passwordRight) {
+    let userPassword = prompt("Digite a senha para trocar o tipo de voto:");
+    if (userPassword === password) {
+      passwordRight = true;
+    } else {
+      alert("Senha incorreta. Não é possível alterar o tipo de voto.");
+    }
+  }
+}
+
 function confirma() {
   var tipoVotoSelecionado = getSelectedValue();
   if (!tipoVotoSelecionado) {
@@ -142,14 +161,7 @@ function confirma() {
   if (numero != "") {
     let tipoVoto = getSelectedValue();
     console.log(`Voto Tentado: Tipo de voto - ${tipoVoto}, Número - ${numero}`);
-    if (
-      numero != "01" &&
-      numero != "02" &&
-      numero != "03" &&
-      numero != "04" &&
-      numero != "05" &&
-      numero != "BR"
-    ) {
+    if (numero != "01" && numero != "02" && numero != "BR") {
       numero = "nulo";
     }
     botaoConfirmar = document.getElementById("buttonON");
@@ -261,14 +273,7 @@ function botao(clicked_id) {
 }
 
 function showHide(my_id) {
-  if (
-    my_id != "01" &&
-    my_id != "02" &&
-    my_id != "03" &&
-    my_id != "04" &&
-    my_id != "05" &&
-    my_id != "BR"
-  ) {
+  if (my_id != "01" && my_id != "02" && my_id != "BR") {
     my_id = "nulo";
   }
   troca_img = document.getElementById(my_id);
@@ -361,10 +366,10 @@ function convertePDF(x) {
       "Parnamirim/RN, " + getTempo() + " - " + getHora() + " "
     );
 
-    pdf.text(170, 620, "________________________________");
-    pdf.text(240, 650, "NOME DA ESCOLA");
-    pdf.text(170, 720, "________________________________");
-    pdf.text(182, 750, "COMISSÃO ELEITORAL ESCOLAR");
+    pdf.text(150, 620, "________________________________");
+    pdf.text(220, 650, "NOME DA ESCOLA");
+    pdf.text(150, 720, "________________________________");
+    pdf.text(162, 750, "COMISSÃO ELEITORAL ESCOLAR");
   }
   if (x) {
     pdf.text(130, 70, "PREFEITURA MUNICIPAL DE PARNAMIRIM/RN");
@@ -378,10 +383,10 @@ function convertePDF(x) {
       460,
       "Parnamirim/RN, " + getTempo() + " - " + getHora() + " "
     );
-    pdf.text(170, 620, "________________________________");
-    pdf.text(240, 650, "NOME DA ESCOLA");
-    pdf.text(170, 720, "________________________________");
-    pdf.text(182, 750, "COMISSÃO ELEITORAL ESCOLAR");
+    pdf.text(150, 620, "________________________________");
+    pdf.text(220, 650, "NOME DA ESCOLA");
+    pdf.text(150, 720, "________________________________");
+    pdf.text(162, 750, "COMISSÃO ELEITORAL ESCOLAR");
   }
 
   let source = document.getElementById("div_tabela");
