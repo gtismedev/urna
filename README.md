@@ -18,4 +18,4 @@ https://parnamirim.rn.gov.br/newsItem.jsp?p=12716
  
 
 # Acesso ao Github Pages
-~ https://fellipemiguel.github.io/gti-urna/
+~ https://gtismedev.github.io/urna/
