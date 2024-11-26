@@ -86,6 +86,10 @@ function carregaDados() {
         (totalVotosProfessores + totalVotosFuncionarios);
       votosTotais = parte1 + parte2;
     }
+
+    if (!votosTotais) {
+      votosTotais = 0;
+    }
     voteSumTotal =
       votosPais + votosAlunos + votosProfessores + votosFuncionarios;
 
