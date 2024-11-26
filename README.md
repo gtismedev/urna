@@ -9,7 +9,7 @@ https://parnamirim.rn.gov.br/newsItem.jsp?p=12716
  - Tela para votação :white_check_mark:
  - Senha para finalizar a votação :white_check_mark:
  - Tela para imprimir o resultado em PDF :white_check_mark:
- - Funcionamento com teclado
+ - Funcionamento com teclado :white_check_mark:
  - Funcionamento com o Firefox :white_check_mark:
 
 # :toolbox: Ferramentas usadas
