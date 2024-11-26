@@ -27,9 +27,12 @@ var ls_keys, botaoConfirmar, botaoConfirmarOff;
 var listaVotoNome, listaVotoNumero, listaVotoVotos;
 
 function carregaDados() {
+  console.log("Função carregaDados chamada.");
   var elementoPai = document.getElementById("tabela_corpo");
 
   elementoPai.innerHTML = "";
+
+  console.log("Dados em listaVoto:", listaVoto);
 
   if (listaVoto.length === 0) {
     console.log("Lista de votos está vazia!");
@@ -51,7 +54,6 @@ function carregaDados() {
 
   for (var i = 0; i < listaVoto.length; i++) {
     var chapa = listaVoto[i];
-
     var votosPais = (chapa.tipos && chapa.tipos.parents) || 0;
     var votosAlunos = (chapa.tipos && chapa.tipos.student) || 0;
     var votosProfessores = (chapa.tipos && chapa.tipos.teacher) || 0;
@@ -67,17 +69,19 @@ function carregaDados() {
 
     var votosTotais = 0;
     var voteSumTotal = 0;
-    if (chapa.numero !== "nulo" && chapa.numero !== "BR") {
+    if (totalVotosPais + totalVotosAlunos === 0) {
+      votosTotais =
+        ((votosProfessores + votosFuncionarios) * 100) /
+        (totalVotosProfessores + totalVotosFuncionarios);
+    } else if (totalVotosProfessores + totalVotosFuncionarios === 0) {
+      votosTotais =
+        ((votosPais + votosAlunos) * 100) / (totalVotosPais + totalVotosAlunos);
+    } else {
       var parte1 =
-        totalVotosPais + totalVotosAlunos !== 0
-          ? ((votosPais + votosAlunos) * 50) /
-            (totalVotosPais + totalVotosAlunos)
-          : 0;
+        ((votosPais + votosAlunos) * 50) / (totalVotosPais + totalVotosAlunos);
       var parte2 =
-        totalVotosProfessores + totalVotosFuncionarios !== 0
-          ? ((votosProfessores + votosFuncionarios) * 50) /
-            (totalVotosProfessores + totalVotosFuncionarios)
-          : 0;
+        ((votosProfessores + votosFuncionarios) * 50) /
+        (totalVotosProfessores + totalVotosFuncionarios);
       votosTotais = parte1 + parte2;
     }
     voteSumTotal =
@@ -319,13 +323,15 @@ function cadastrarCandidato() {
 }
 
 function preenche_lista() {
+  console.log("Função preenche_lista chamada.");
   ls_keys = Object.keys(localStorage);
-  listaVoto = [];
+  listaVoto = []; // Reseta a listaVoto para evitar duplicações
 
   for (var i in ls_keys) {
     var item = JSON.parse(localStorage.getItem(ls_keys[i]));
     console.log("Item encontrado no localStorage:", item);
 
+    // Verifique se item.tipos existe e inicialize se necessário
     if (!item.tipos) {
       item.tipos = {
         teacher: 0,
@@ -335,6 +341,7 @@ function preenche_lista() {
       };
     }
 
+    // Remover chapas 3, 4 e 5
     if (item.numero !== "03" && item.numero !== "04" && item.numero !== "05") {
       listaVoto.push(item);
     }
