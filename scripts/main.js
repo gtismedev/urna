@@ -69,7 +69,9 @@ function carregaDados() {
 
     var votosTotais = 0;
     var voteSumTotal = 0;
-    if (totalVotosPais + totalVotosAlunos === 0) {
+    if (chapa.numero === "nulo" || chapa.numero === "BR") {
+      votosTotais = 0;
+    } else if (totalVotosPais + totalVotosAlunos === 0) {
       votosTotais =
         ((votosProfessores + votosFuncionarios) * 100) /
         (totalVotosProfessores + totalVotosFuncionarios);
@@ -104,7 +106,7 @@ function carregaDados() {
     td5.textContent = votosProfessores;
     td6.textContent = votosFuncionarios;
     td8.textContent = voteSumTotal;
-    td7.textContent = votosTotais.toFixed(2) + "%";
+    td7.textContent = votosTotais.toFixed(1) + "%";
 
     tr.appendChild(td1);
     tr.appendChild(td2);
