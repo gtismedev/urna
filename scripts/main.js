@@ -372,7 +372,7 @@ function convertePDF(x) {
     pdf.text(50, 110, "COORDENADORIA DE DESENVOLVIMENTO DA GESTÃO ESCOLAR");
     pdf.text(135, 130, "SETOR DE TECNOLOGIA EDUCACIONAL/GTI");
     pdf.text(150, 220, "Resultado da Eleição: Gestores Escolares");
-    pdf.text(165, 240, "(Complementação - Triênio 2025-2027)");
+    pdf.text(230, 240, "(triênio 2025-2027).");
     pdf.text(
       200,
       460,
@@ -390,7 +390,7 @@ function convertePDF(x) {
     pdf.text(50, 110, "COORDENADORIA DE DESENVOLVIMENTO DA GESTÃO ESCOLAR");
     pdf.text(135, 130, "SETOR DE TECNOLOGIA EDUCACIONAL/GTI");
     pdf.text(150, 220, "Resultado da Eleição: Gestores Escolares");
-    pdf.text(165, 240, "(Complementação - Triênio 2025-2027)");
+    pdf.text(230, 240, "(triênio 2025-2027).");
     pdf.text(
       200,
       460,
