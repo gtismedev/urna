@@ -71,20 +71,9 @@ function carregaDados() {
     var voteSumTotal = 0;
     if (chapa.numero === "nulo" || chapa.numero === "BR") {
       votosTotais = 0;
-    } else if (totalVotosPais + totalVotosAlunos === 0) {
-      votosTotais =
-        ((votosProfessores + votosFuncionarios) * 100) /
-        (totalVotosProfessores + totalVotosFuncionarios);
-    } else if (totalVotosProfessores + totalVotosFuncionarios === 0) {
-      votosTotais =
-        ((votosPais + votosAlunos) * 100) / (totalVotosPais + totalVotosAlunos);
     } else {
-      var parte1 =
-        ((votosPais + votosAlunos) * 50) / (totalVotosPais + totalVotosAlunos);
-      var parte2 =
-        ((votosProfessores + votosFuncionarios) * 50) /
-        (totalVotosProfessores + totalVotosFuncionarios);
-      votosTotais = parte1 + parte2;
+      votosTotais =
+        votosPais + votosAlunos + votosProfessores + votosFuncionarios;
     }
 
     if (!votosTotais) {
